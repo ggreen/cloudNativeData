@@ -1,0 +1,9 @@
+<persistence>
+    <persistence-unit name="ORderManagement">
+        <description>This unit manages orders and customers.
+            It does not rely on any vendor-specific features and can
+            therefore be deployed to any persistence provider.
+        </description>
+        <class>io.pivotal.gemfire.domain.Product</class>
+    </persistence-unit>
+</persistence>

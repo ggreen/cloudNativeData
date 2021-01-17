@@ -1,0 +1,85 @@
+Category,CategoryName,Subcategory,SubcategoryName
+2,produce,2001,apples
+2,produce,2002,bananas
+2,produce,2003,cucumbers
+2,produce,2004,dill
+2,produce,2005,eggplant
+2,produce,2006,fennel
+2,produce,2007,grapefruit
+2,produce,2008,horseradish
+2,produce,2009,lemon
+2,produce,2010,melon
+2,produce,2011,napa cabbage
+2,produce,2012,oragne
+2,produce,2013,pineapple
+2,produce,2014,quince
+2,produce,2015,radish
+2,produce,2016,spinach
+2,produce,2017,turnip
+2,produce,2018,watermelon
+2,produce,2999,other
+1,beverage,1001,juice
+1,beverage,1002,soda
+1,beverage,1003,water
+1,beverage,1004,beer
+1,beverage,1005,wine
+1,beverage,1999,other
+3,dairy,3001,milk
+3,dairy,3002,yoghurt
+3,dairy,3003,butter
+3,dairy,3004,cottage cheese
+3,dairy,3005,half and half
+3,dairy,3006,eggs
+3,dairy,3999,other
+4,frozen foods,4001,ice cream
+4,frozen foods,4002,vegetable
+4,frozen foods,4003,fruit
+4,frozen foods,4004,pizza
+4,frozen foods,4005,breakfast foods
+4,frozen foods,4999,other
+5,paper goods,5001,toilet paper
+5,paper goods,5002,paper towels
+5,paper goods,5003,paper plates
+5,paper goods,5999,other
+6,meat,6001,steak
+6,meat,6002,ground beef
+6,meat,6003,pork chop
+6,meat,6003,whole chicken
+6,meat,6004,chicken breast
+6,meat,6005,bacon
+6,meat,6999,other
+7,deli,7001,salami
+7,deli,7002,roast beef
+7,deli,7003,ham
+7,deli,7004,swiss cheese
+7,deli,7005,american cheese
+7,deli,7006,cole slaw
+7,deli,7007,potato salad
+7,deli,7008,spicy sausage
+7,deli,7999,other
+8,bakery,8001,sliced white bread
+8,bakery,8002,rye bread
+8,bakery,8003,whole wheat bread
+8,bakery,8004,bagel
+8,bakery,8005,donut
+8,bakery,8006,layer cake
+8,bakery,8999,other
+9,condiments,9001,cooking oil
+9,condiments,9002,olive oil
+9,condiments,9003,mayo
+9,condiments,9004,catshup
+9,condiments,9005,mustard
+9,condiments,9006,jam and jelly
+9,condiments,9007,peanut butter
+9,condiments,9999,other
+10,canned goods,10001,corn
+10,canned goods,10002,stringbeans
+10,canned goods,10003,tomato
+10,canned goods,10004,peaches
+10,canned goods,10005,baked beans
+10,canned goods,10999,other
+11,health and beauty aids,11001,hair products
+11,health and beauty aids,11002,pain relief
+11,health and beauty aids,11003,oral care
+11,health and beauty aids,11004,digestive
+11,health and beauty aids,11999,other

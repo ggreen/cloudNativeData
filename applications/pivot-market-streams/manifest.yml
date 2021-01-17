@@ -1,0 +1,10 @@
+---
+applications:
+- name: pivotMarketStreams 
+  memory: 4G 
+  env:
+      kafkaBootStrapServers: ec2-35-174-17-30.compute-1.amazonaws.com:9092
+      kafkaGroupId: pivotMarketStreamsPCFOne
+      jdbcUrl: jdbc:postgresql://18.213.48.32:6432/retail
+      jdbcUsername: retail
+      

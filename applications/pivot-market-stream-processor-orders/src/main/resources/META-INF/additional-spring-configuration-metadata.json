@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "spring.cloud.stream.bindings.input.destination",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.bindings.input.destination'"
+  },
+  {
+    "name": "spring.cloud.stream.bindings.output.destination",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.bindings.output.destination'"
+  },
+  {
+    "name": "spring.cloud.stream.kakfa.bindings.input.consumer.auto-bind-dlq",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.kakfa.bindings.input.consumer.auto-bind-dlq'"
+  },
+  {
+    "name": "spring.cloud.stream.rabbit.bindings.input.consumer.republish-to-dlq",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.rabbit.bindings.input.consumer.republish-to-dlq'"
+  },
+  {
+    "name": "spring.cloud.stream.bindings.input.group",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.bindings.input.group'"
+  },
+  {
+    "name": "spring.cloud.stream.kakfa.bindings.input.consumer.republish-to-dlq",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.kakfa.bindings.input.consumer.republish-to-dlq'"
+  },
+  {
+    "name": "spring.cloud.stream.kakfa.streams.binder.input.consumer.auto-bind-dlq",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.kakfa.streams.binder.input.consumer.auto-bind-dlq'"
+  },
+  {
+    "name": "spring.cloud.stream.kakfa.streams.binders.input.consumer.republish-to-dlq",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.kakfa.streams.binders.input.consumer.republish-to-dlq'"
+  },
+  {
+    "name": "spring.cloud.stream.kakfa.streams.binder.input.group",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.stream.kakfa.streams.binder.input.group'"
+  }
+]}
