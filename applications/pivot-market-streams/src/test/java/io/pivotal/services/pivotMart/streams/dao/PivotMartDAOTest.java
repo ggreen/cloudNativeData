@@ -1,101 +1,147 @@
 package io.pivotal.services.pivotMart.streams.dao;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import io.pivotal.gemfire.domain.*;
+import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
+import io.pivotal.services.dataTx.geode.io.QuerierService;
+import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
+import nyla.solutions.core.util.Organizer;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.util.Collection;
+import java.util.List;
 
-import javax.sql.DataSource;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
 
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.Promotion;
-import io.pivotal.services.pivotMart.streams.PivotMartStreamConf;
-import io.pivotal.services.pivotMart.streams.dao.PivotMartDAO;
-
-@Ignore
+@ExtendWith(MockitoExtension.class)
 public class PivotMartDAOTest
 {
-	private static PivotMartDAO dao;
-	
-	@BeforeClass
-	public static void setUp()
-	{
-		PivotMartStreamConf conf = new PivotMartStreamConf();
-		dao = new PivotMartDAO();
-		dao.jdbcTemplate = conf.jdbcTemplate(mock(DataSource.class));
-	}
+    @Mock
+    private PivotMarketPostgreDAO pivotMarketPostgreDAO;
 
-	@Test
-	public void testCustomerFavorites()
-	{
-		CustomerIdentifier customer = new CustomerIdentifier();
-		customer.setFirstName("Joe");
-		customer.setLastName("Smith");
-		CustomerFavorites cp = dao.selectCustomerFavorites(customer).iterator().next();
-		assertNotNull(cp);
-		
-		assertTrue(cp.getProductQuanties() != null && !cp.getProductQuanties().isEmpty());
-		
-		
-		assertTrue(cp
-				.getProductQuanties()
-					.stream()
-						.allMatch(p -> p.getProduct() != null && p.getProduct().getProductName() != null && p.getProduct().getProductName().length() > 0));
-		
-	}//------------------------------------------------
-	
-	@Test
-	public void testSelectProductsByBeacon()
-	{
-		/*
-		 * customerId int,
-		  deviceId text,
-		  major int,
-		  minor int,
-		  signalPower int,
-		  promotionID int,
-		  marketingMessage text,
-		  marketingimageurl text
-		 */
-		Beacon beacon  = new Beacon();
-		int major = -1;
-		int minor = -1;
-		String uuid = "2";
-		beacon.setMajor(major);
-		beacon.setMinor(minor);
-		beacon.setUuid(uuid);
-		
-		Collection<Product> products = dao.selectProductsByBeacon(beacon);
-		assertNotNull(products);
-		assertTrue(!products.isEmpty());
-	}
-	@Test
-	@Ignore
-	public void testSelectPromotionsByProduct()
-	{
-		Product product = null;
-		
-		Collection<Promotion> promotions = dao.selectPromotionsByProduct(product);
-		
-		assertNull(promotions);
-		int wonderBreadId = 58;
-		
-		 product = new Product();
-		product.setProductId(wonderBreadId);
-		
-		promotions = dao.selectPromotionsByProduct(product);
-		
-		assertNotNull(promotions);
-		assertTrue(!promotions.isEmpty());
-		
-		assertTrue(promotions.stream().allMatch(p -> p.getMarketingMessage().contains("Bread")));
-	}
-	
+    private PivotMartDAO subject;
+
+    @Mock
+    private JdbcTemplate jdbcTemplate;
+
+    @Mock
+    private QuerierService querierService;
+
+    @BeforeEach
+    public void setUp()
+    {
+        subject = new PivotMartDAO(jdbcTemplate, pivotMarketPostgreDAO, querierService);
+    }
+
+
+    @Test
+    void queryOrderCount()
+    {
+        long expected = 3;
+        when(jdbcTemplate.queryForObject(anyString(),any(Class.class))).thenReturn(expected);
+        assertEquals(expected,subject.queryOrderCount());
+    }
+
+    @Test
+    public void testCustomerFavorites()
+    {
+        /*
+        query(sql,args,rm);
+         */
+        Integer expectedCustomerId = 3;
+        ProductQuantity expectedPQ = new JavaBeanGeneratorCreator<ProductQuantity>(ProductQuantity.class)
+                .randomizeAll().generateNestedAll().create();
+
+        Collection<ProductQuantity> expectedProductQuantity = Organizer.toList(expectedPQ);
+
+        CustomerFavorites expectedCustomer = new JavaBeanGeneratorCreator<CustomerFavorites>(CustomerFavorites.class)
+                .randomizeAll().create();
+
+        expectedCustomer.setProductQuanties(expectedProductQuantity);
+
+
+        List<CustomerFavorites> expectedCustomers = Organizer.toList(expectedCustomer);
+
+        //int customerId = this.jdbcTemplate.queryForObject(sql,Integer.class,firstName,lastName);
+        when(jdbcTemplate.queryForObject(anyString(),any(Class.class),anyString(),anyString())).thenReturn(expectedCustomerId);
+        when(jdbcTemplate.query(anyString(), any(RowMapper.class),anyInt())).thenReturn(expectedCustomers);
+
+
+        CustomerIdentifier customer = new CustomerIdentifier();
+        customer.setFirstName("Joe");
+        customer.setLastName("Smith");
+        CustomerFavorites cp = subject.selectCustomerFavorites(customer).iterator().next();
+        assertNotNull(cp);
+
+        assertTrue(cp.getProductQuanties() != null && !cp.getProductQuanties().isEmpty());
+
+        assertTrue(cp
+                .getProductQuanties()
+                .stream()
+                .allMatch(p -> p.getProduct() != null && p.getProduct().getProductName() != null && p.getProduct().getProductName().length() > 0));
+
+    }//------------------------------------------------
+
+    @Test
+    public void testSelectProductsByBeacon()
+    {
+        Product expected =  new JavaBeanGeneratorCreator<Product>(Product.class)
+                .randomizeAll().create();
+
+        List<Product> list = Organizer.toList(expected);
+
+        when(jdbcTemplate.query(anyString(),any(Object[].class),any(RowMapper.class)))
+                .thenReturn(list);
+
+        Beacon beacon = new Beacon();
+        int major = -1;
+        int minor = -1;
+        String uuid = "2";
+        beacon.setMajor(major);
+        beacon.setMinor(minor);
+        beacon.setUuid(uuid);
+
+        Collection<Product> products = subject.selectProductsByBeacon(beacon);
+        assertNotNull(products);
+        assertTrue(!products.isEmpty());
+    }
+
+    @Test
+    public void testSelectPromotionsByProduct()
+    {
+        Promotion expected = new JavaBeanGeneratorCreator<Promotion>(Promotion.class)
+                .create();
+
+        expected.setMarketingMessage("Bread");
+
+        List<Promotion> list = Organizer.toList(expected);
+
+        when(jdbcTemplate.query(anyString(),any(RowMapper.class),anyInt()))
+                .thenReturn(list);
+
+        Product product = null;
+
+        Collection<Promotion> promotions = subject.selectPromotionsByProduct(product);
+
+        assertNull(promotions);
+        int wonderBreadId = 58;
+
+        product = new Product();
+        product.setProductId(wonderBreadId);
+
+        promotions = subject.selectPromotionsByProduct(product);
+
+        assertNotNull(promotions);
+        assertTrue(!promotions.isEmpty());
+
+        assertTrue(promotions.stream().allMatch(p -> p.getMarketingMessage().contains("Bread")));
+    }
+
 }

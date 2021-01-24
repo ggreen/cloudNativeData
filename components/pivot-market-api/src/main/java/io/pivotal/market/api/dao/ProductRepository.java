@@ -4,9 +4,13 @@ import org.springframework.data.repository.CrudRepository;
 
 import io.pivotal.gemfire.domain.Product;
 
-public interface ProductRepository extends CrudRepository<Product,Integer>
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductRepository extends CrudRepository<ProductEntity,Integer>
 {
 
+    Optional<ProductEntity> findById(Integer productId);
 }
 
 

@@ -1,23 +1,19 @@
 package io.pivotal.services.pivotMart.streams.dao;
 
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import io.pivotal.gemfire.domain.Product;
 import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import io.pivotal.services.pivotMart.streams.PivotMartStreamConf;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @SpringBootTest
 @Import(PivotMartStreamConf.class)
-@Ignore
+@Disabled
 public class JpaTest
 {
 	@Autowired

@@ -1,48 +1,51 @@
 package io.pivotal.services.pivotMart.streams;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Arrays;
-import java.util.concurrent.BlockingQueue;
-
-import nyla.solutions.core.util.Organizer;
-import org.apache.geode.cache.Region;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.google.gson.Gson;
-
-import gedi.solutions.geode.client.GeodeClient;
 import io.pivotal.gemfire.domain.BeaconRequest;
 import io.pivotal.gemfire.domain.CustomerIdentifier;
 import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.services.pivotMart.streams.PivotMartStreamService;
+import io.pivotal.gemfire.domain.Product;
+import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import io.pivotal.services.pivotMart.streams.dao.PivotMartDAO;
 import nyla.solutions.core.io.csv.CsvWriter;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
+import nyla.solutions.core.util.Organizer;
 import nyla.solutions.core.util.Text;
+import org.apache.geode.cache.Region;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import solutions.nyla.apacheKafka.ApacheKafka;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 public class PivotMartStreamServiceTest
 {
-	private static PivotMartStreamService service;
+	private static PivotMartStreamService subject;
 	private static ApacheKafka kafka;
 	private Gson gson = new Gson();
-	
+
+
+
 	@SuppressWarnings("unchecked")
-	@BeforeClass
+	@BeforeAll
 	public static void setUp()
 	throws Exception
 	{
 
-		service = new PivotMartStreamService();
-		service.beaconProductsRegion = mock(Region.class);
-		service.customerFavoritesRegion = mock(Region.class);
-		service.customerPromotionsRegion = mock(Region.class);
-		service.orderQueue = mock(BlockingQueue.class);
+		subject = new PivotMartStreamService();
+		subject.productsRegion = mock(Region.class);
+		subject.beaconProductsRegion = mock(Region.class);
+		subject.customerFavoritesRegion = mock(Region.class);
+		subject.customerPromotionsRegion = mock(Region.class);
+		subject.orderQueue = mock(BlockingQueue.class);
 		
 		OrderDTO order = new OrderDTO();
 		order.setCustomerIdentifier(new CustomerIdentifier());
@@ -54,40 +57,25 @@ public class PivotMartStreamServiceTest
 		order.setProductIds(productIds);
 		
 		String orderGson = new Gson().toJson(order);
-		when(service.orderQueue.take()).thenReturn(orderGson);
-		when(service.orderQueue.take()).thenReturn(orderGson);
+		when(subject.orderQueue.take()).thenReturn(orderGson);
+		when(subject.orderQueue.take()).thenReturn(orderGson);
 		
-		service.dao = mock(PivotMartDAO.class);
-		service.boss = new ExecutorBoss(1);
-		service.beaconRequestQueue = mock(BlockingQueue.class);
+		subject.dao = mock(PivotMartDAO.class);
+		subject.boss = new ExecutorBoss(1);
+		subject.beaconRequestQueue = mock(BlockingQueue.class);
 		kafka = mock(ApacheKafka.class);
 		
 	}
-	
+
 	@Test
-	@Ignore
-	public void testFullFlow()
+	void constructProductAssociations()
 	{
-		
-		Region<String,Object> region = GeodeClient.connect().getRegion("customerPromotions");
-		
-		
-		BeaconRequest br = new BeaconRequest();
-		br.setCustomerId(new CustomerIdentifier());
-		br.getCustomerId().setFirstName("John");
-		br.getCustomerId().setLastName("Smith");
-		br.setUuid("2");
-		
-		
-		region.remove(br.getCustomerId()+"");
-		
-		service.processBeaconRequest(br);
-		
-		
-		
-		assertNotNull(region.get(String.valueOf(br.getCustomerId())));
-		
+		Collection<Product> expected = null;
+
+		subject.cacheProductAssociations(expected);
+
 	}
+
 	@Test
 	public void testProcessOrderCsv() throws Exception
 	{
@@ -108,7 +96,7 @@ public class PivotMartStreamServiceTest
 			orderDTO.getCustomerIdentifier().getLastName(),
 			orderDTO.getCustomerIdentifier().getMobileNumber(),
 			Text.mergeArray(",",orderDTO.getProductIds()));
-			OrderDTO out = service.processOrderCSV(csv);
+			OrderDTO out = subject.processOrderCSV(csv);
 			
 			assertArrayEquals(out.getProductIds(),orderDTO.getProductIds());
 		}
@@ -118,7 +106,7 @@ public class PivotMartStreamServiceTest
 	}
 	
 	@Test
-	@Ignore
+	@Disabled
 	public void testCheckBeaconRequestQueueKakfa() throws Exception
 	{
 		
@@ -140,7 +128,7 @@ public class PivotMartStreamServiceTest
 		
 		Thread.sleep(100);
 		
-		assertTrue(service.checkBeaconRequestQueue() > 0);
+		assertTrue(subject.checkBeaconRequestQueue() > 0);
 		
 		Thread.sleep(5000);
 		
@@ -151,14 +139,19 @@ public class PivotMartStreamServiceTest
 		
 	}//------------------------------------------------
 	@Test
-	@Ignore
 	public void testOrders()
 	throws Exception
 	{
-		
-		int results = service.checkOrderQueue();
-		
-		assertTrue(results > 0);
+		Integer productId =  1;
+		List<Integer> expectedIds = Organizer.toList(productId);
+		when(subject.dao.selectProductIds()).thenReturn(expectedIds);
+
+		Product expectedProduct = new Product();
+		Collection<Product> expecteProductList = Organizer.toList(expectedProduct);
+		when(subject.dao.insertOrder(any())).thenReturn(expecteProductList);
+		int results = subject.checkOrderQueue();
+
+		assertEquals(1,results);
 		
 	}//------------------------------------------------
 }

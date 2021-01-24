@@ -1,3 +1,18 @@
 create role retail with password $PASSWORD;
 alter role retail login CREATEEXTTABLE;  
 create database retail with owner retail;
+GRANT ALL PRIVILEGES ON DATABASE retail TO retail;
+GRANT USAGE ON SCHEMA pivotalmarkets TO retail;
+ALTER ROLE retail SET search_path TO pivotalmarkets;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.beacon TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.beacon TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.category TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.customer_favorites TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.customercategory TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.customers TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.orders TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.order_items TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.product TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.promotion TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.stores TO retail;
+GRANT ALL PRIVILEGES ON TABLE pivotalmarkets.promotion TO retail;

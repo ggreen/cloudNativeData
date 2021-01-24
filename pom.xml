@@ -10,6 +10,7 @@
     <module>components/pivot-market-api</module>
     <module>applications/pivot-market-app</module>
     <module>applications/pivot-market-streams</module>
+      <module>applications/marketDataMigration</module>
     <module>applications/pivot-market-stream-processor-orders</module>
   </modules>
   <repositories>

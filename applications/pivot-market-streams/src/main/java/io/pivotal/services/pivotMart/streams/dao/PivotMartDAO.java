@@ -8,12 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.pivotal.services.dataTx.geode.io.QuerierService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import gedi.solutions.geode.io.QuerierService;
 import io.pivotal.gemfire.domain.Beacon;
 import io.pivotal.gemfire.domain.Customer;
 import io.pivotal.gemfire.domain.CustomerFavorites;
@@ -28,23 +27,21 @@ import nyla.solutions.core.util.Text;
 
 public class PivotMartDAO
 {
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
+	private final PivotMarketPostgreDAO pivotMarketPostgreDAO;
 	
-	@Autowired
-	PivotMarketPostgreDAO pivotMarketPostgreDAO;
-	
-	@Autowired
-	QuerierService querierService;
-	
-	/**
-	 * @param jdbcTemplate the jdbcTemplate to set
-	 */
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
+	private final QuerierService querierService;
+	private String countSql = "select count(*) from pivotalmarkets.orders";
+
+	public PivotMartDAO(JdbcTemplate jdbcTemplate, PivotMarketPostgreDAO pivotMarketPostgreDAO,
+						QuerierService querierService)
 	{
 		this.jdbcTemplate = jdbcTemplate;
-	}//------------------------------------------------
-	
+		this.pivotMarketPostgreDAO = pivotMarketPostgreDAO;
+		this.querierService = querierService;
+	}
+
+
 	public Set<CustomerFavorites> selectCustomerFavorites(CustomerIdentifier customerIdentifer)
 	{
 		
@@ -59,7 +56,7 @@ public class PivotMartDAO
 		"        , row_number() OVER (PARTITION BY customerid, count ORDER BY random()) AS _rank_  -- include this line to randomly select one if ties unacceptable\n" + 
 		"  FROM (select customerid, productid, count(*)\n" + 
 		"    from (select o.customerid, i.productid, i.productname\n" + 
-		"    from orders o, order_items i\n" + 
+		"    from pivotalmarkets.orders o, pivotalmarkets.order_items i\n" +
 		"    where o.orderid = i.orderid and customerid = ?) as custOrders\n" + 
 		"    group by productid,customerid\n" + 
 		"    order by customerid ) aggregateQuery\n" + 
@@ -76,7 +73,6 @@ public class PivotMartDAO
 			cp.setCustomerId(customerId);
 			
 			Collection<ProductQuantity> productQuatities = new ArrayList<>();
-			
 
 			ProductQuantity productQuantity = new ProductQuantity();
 			Product product = new Product();
@@ -88,9 +84,8 @@ public class PivotMartDAO
 			cp.setProductQuanties(productQuatities);
 			return cp; 
 		};
-		Integer[] args = {customerId};
-		
-		List<CustomerFavorites> list =  jdbcTemplate.query(sql,args,rm);
+
+		List<CustomerFavorites> list =  jdbcTemplate.query(sql,rm,customerId);
 		
 		if(list == null ||  list.isEmpty())
 			return null;
@@ -105,8 +100,7 @@ public class PivotMartDAO
 		
 		String sql = "select customerid from pivotalmarkets.customers c where (c.firstname = ? and c.lastname = ?) limit 1 ";
 		// Object[] args, Class<T> requiredTypex
-		Object[] args = {firstName,lastName};
-		int customerId = this.jdbcTemplate.queryForObject(sql,args,Integer.class);
+		int customerId = this.jdbcTemplate.queryForObject(sql,Integer.class,firstName,lastName);
 		return customerId;
 	}//------------------------------------------------
 
@@ -167,8 +161,7 @@ public class PivotMartDAO
 			return p;
 		};
 		
-		Object[] args  = {product.getProductId()};
-		List<Promotion> list = jdbcTemplate.query(sql,args,rm);
+		List<Promotion> list = jdbcTemplate.query(sql,rm,product.getProductId());
 		
 		return list != null ? new HashSet<Promotion>(list) : null;
 	}//------------------------------------------------
@@ -265,12 +258,12 @@ public class PivotMartDAO
 	}//------------------------------------------------
 	public Set<ProductAssociate> selectProductAssociates(Product product)
 	{
-		String sql = "select pre[1],post from pivotalmarkets.assoc_rules where pre[1] = ?";
+		String sql = "select associations from pivotalmarkets.product_association where id = ?";
 		
 		RowMapper<ProductAssociate> mapper = (rs,i) -> {
-			Array posts = rs.getArray(2);
-			String[] postsArray= (String[])posts.getArray();
-			ProductAssociate pa = new ProductAssociate(rs.getString(1), postsArray); 
+			String associations = rs.getString(1);
+			String[] postsArray= associations != null? associations.split("|") : null;
+			ProductAssociate pa = new ProductAssociate(product.getProductName(), postsArray);
 			return pa;
 			};
 		
@@ -322,7 +315,10 @@ public class PivotMartDAO
 		return 0;
 		
 	}//------------------------------------------------
-	
-	
 
+
+	public long queryOrderCount()
+	{
+		return this.jdbcTemplate.queryForObject(countSql,Long.class);
+	}
 }

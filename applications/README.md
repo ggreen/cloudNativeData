@@ -54,3 +54,21 @@ The application's user interface will display these promotions in near realtime.
 **NOTE:** The current implementation is for a single customer.
 The notifications are currently shared across multiple open browsers.
 The distribute is shared for a single customer, that ALL open browser instances will receive all messages.
+
+
+
+docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/madlib-1.17.0+18-gp6-rhel6-x86_64/madlib-1.17.0+18-gp6-rhel6-x86_64.gppkg 484d641ca16a:/home/gpadmin
+docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/GPDB_4.3/madlib-ossv1.7.1_pv1.9.3_gpdb4.3orca-rhel5-x86_64.gppkg  484d641ca16a:/home/gpadmin
+
+docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/yum-3.4.3.tar.gz 484d641ca16a:/home/gpadmin 
+
+gppkg  -i madlib-ossv1.7.1_pv1.9.3_gpdb4.3orca-rhel5-x86_64.gppkg
+
+/usr/local/greenplum-db/madlib/bin/
+
+export PGDATABASE=template1
+
+
+/usr/local/greenplum-db/madlib/bin/madpack --platform greenplum install
+
+docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/m4 484d641ca16a:/home/gpadmin
