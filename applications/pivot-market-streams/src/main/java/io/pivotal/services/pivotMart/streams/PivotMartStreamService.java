@@ -12,6 +12,7 @@ import nyla.solutions.core.util.Organizer;
 import nyla.solutions.core.util.Text;
 import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -37,12 +38,12 @@ public class PivotMartStreamService
     @Resource
     Region<Integer, Product> productsRegion;
 
-    @Resource(name = "beaconRequestQueue")
-    BlockingQueue<String> beaconRequestQueue;
+//    @Resource(name = "beaconRequestQueue")
+//    BlockingQueue<String> beaconRequestQueue;
 
 
-    @Resource(name = "orderQueue")
-    BlockingQueue<String> orderQueue;
+//    @Resource(name = "orderQueue")
+//    BlockingQueue<String> orderQueue;
 
     @Resource
     Region<String, String> customerLocationRegion;
@@ -169,20 +170,6 @@ public class PivotMartStreamService
         return true;
 
     }//------------------------------------------------
-
-    public int checkOrderQueue()
-    throws InterruptedException, JsonSyntaxException
-    {
-        Gson gson = new Gson();
-
-        String msg = this.orderQueue.take();
-        OrderDTO order = gson.fromJson(msg, OrderDTO.class);
-        this.loadProductsCache();
-
-        return processOrder(order);
-
-    }//------------------------------------------------
-
     public int processOrder(OrderDTO order)
     {
         Debugger.println(this, "process Order %s", order);
@@ -222,33 +209,34 @@ public class PivotMartStreamService
 
     }//------------------------------------------------
 
-    public int checkBeaconRequestQueue()
-    throws InterruptedException, JsonSyntaxException
-    {
-        String msg = null;
-        Gson gson = new Gson();
-
-        MemorizedQueue q = new MemorizedQueue();
-        int cnt = 0;
-
-        msg = this.beaconRequestQueue.take();
-        cnt++;
-        final BeaconRequest br = gson.fromJson(msg, BeaconRequest.class);
-
-        q.add(() ->
-                {
-                    processBeaconRequest(br);
-                }
-        );
-
-        if (cnt == 0)
-            return 0;
-
-        boolean background = true;
-        boss.startWorking(q, background);
-
-        return cnt;
-    }
+//    @Scheduled(fixedDelay = 5000)
+//    public int checkBeaconRequestQueue()
+//    throws InterruptedException, JsonSyntaxException
+//    {
+//        String msg = null;
+//        Gson gson = new Gson();
+//
+//        MemorizedQueue q = new MemorizedQueue();
+//        int cnt = 0;
+//
+//        msg = this.beaconRequestQueue.take();
+//        cnt++;
+//        final BeaconRequest br = gson.fromJson(msg, BeaconRequest.class);
+//
+//        q.add(() ->
+//                {
+//                    processBeaconRequest(br);
+//                }
+//        );
+//
+//        if (cnt == 0)
+//            return 0;
+//
+//        boolean background = true;
+//        boss.startWorking(q, background);
+//
+//        return cnt;
+//    }
 
     //@StreamListener(Processor.INPUT)
     //@SendTo(Processor.OUTPUT)

@@ -1,35 +1,74 @@
 package io.pivotal.pde.demo.cloudNativeData;
 
+import gedi.solutions.geode.spring.security.SpringSecurityUserService;
+import gedi.solutions.geode.spring.security.data.UserProfileDetails;
+import io.pivotal.gemfire.domain.OrderDTO;
 import io.pivotal.gemfire.domain.Product;
+import io.pivotal.gemfire.domain.ProductAssociate;
 import io.pivotal.pde.demo.cloudNativeData.services.ProductShoppingService;
-import io.pivotal.services.dataTx.geode.client.GeodeClient;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
+import io.pivotal.services.dataTx.geode.RegionTemplate;
+import io.pivotal.services.dataTx.geode.lucene.GeodeLuceneSearch;
+import nyla.solutions.core.data.collections.QueueSupplier;
+import org.apache.geode.cache.Region;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.messaging.MessageChannel;
 
 import java.math.BigDecimal;
+import java.security.Principal;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Queue;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Disabled
+@ExtendWith(MockitoExtension.class)
 public class ProductShoppingServiceTest
 {
+	private ProductShoppingService subject;
 
-	static ProductShoppingService service;
-	
-	@BeforeAll
-	public static void setUp()
+	@Mock
+	private Principal user;
+
+	@Mock
+	private QueueSupplier<OrderDTO> messageChannel;
+
+	@Mock
+	private RegionTemplate<Integer, Product> productsRegion;
+
+	@Mock
+	private SpringSecurityUserService springSecurityUserService;
+
+	@Mock
+	private GeodeLuceneSearch search;
+
+	@Mock
+	private Region<String, Collection<Product>> productRecommendationsRegion;
+
+	@Mock
+	private Region<Integer, Set<ProductAssociate>> productAssociationsRegion;
+
+	@Mock
+	private UserProfileDetails userProfileDetails;
+	private String expectedUserName = "hello";
+
+	@BeforeEach
+	public void setUp()
 	{
-		GeodeClient client = GeodeClient.connect();
-		
-		
-		service = new ProductShoppingService();
+		subject = new ProductShoppingService(productsRegion, springSecurityUserService, search,
+				productRecommendationsRegion, productAssociationsRegion,messageChannel);
 	}
 	
 	@Test
-	public void testSearch()
+	public void search()
 	throws Exception
 	{
 		
@@ -43,16 +82,28 @@ public class ProductShoppingServiceTest
 		product.setSubCategoryId("Apples");
 		
 		//service.storeProduct(product);
+		Collection expected = Arrays.asList(product);
+
+		when(search.search(anyString(),anyString(),anyString(),anyString()))
+				.thenReturn(expected);
+		Collection<Product> actual = subject.searchProducts(text);
+
+		assertEquals(expected,actual);
 		
-		Collection<Product> collection = service.searchProducts(text);
-		assertNotNull(collection);
-		
-		assertTrue(!collection.isEmpty());
-		
-		assertTrue(collection.stream()
-					.anyMatch(p -> (p.getProductName() != null) 
-						? 	p.getProductName().contains("fruit") 
-							: false));
+
 	}
 
+	@Test
+	void orderProducts() throws Exception
+	{
+		when(user.getName()).thenReturn(expectedUserName);
+
+		when(this.springSecurityUserService
+				.findUserProfileDetailsByUserName(anyString()))
+				.thenReturn(userProfileDetails);
+
+		Integer[] productIds = {1};
+		subject.orderProducts(user,productIds);
+		verify(messageChannel).add(any());
+	}
 }

@@ -3,10 +3,10 @@ package com.vmware.dataTx.marketDataMigration
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+//@SpringBootTest
 class MarketDataMigrationApplicationTests {
 
-	@Test
+//	@Test
 	fun contextLoads() {
 	}
 

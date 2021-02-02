@@ -17,7 +17,6 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;

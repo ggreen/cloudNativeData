@@ -21,7 +21,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
 	@Autowired
 	Environment env;
 	
-	
 	@Autowired
 	UserDetailsService userDetailsService;
 
@@ -52,8 +51,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
                 .authenticationEntryPoint(authenticationEntryPoint()).
                 and()
                 .userDetailsService(userDetailsService)
-//			    .formLogin().loginPage("/delete.html");
-
                 .formLogin().loginPage("/login");
         
         http.exceptionHandling()
@@ -63,50 +60,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
 
         
     }//-------------------------------------------------------------
-	/**
-	 * Configures the authentication details
-	 * @throws Exception when an error occurs
-	 */
-	/*@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        
-        String[] userNames=env.getRequiredProperty("application.usernames",String[].class);
-        
-        if(userNames == null || userNames.length ==0)
-        	return;
-        
-        
-        InMemoryUserDetailsManagerConfigurer<?> mgr = auth.inMemoryAuthentication();
-        
-        
-        for (String userName : userNames) {
-        	mgr.withUser(userName).password(env.getRequiredProperty(userName+".password"))
-            .roles(rolesFor(userName));
-		}
-        
-    }*/
-	//-------------------------------------------------------------
-	
-	/**
-	 * Determine the role for the user
-	 * @param userName the user name
-	 * @return the user Role
-	 */
-	/*String[] rolesFor(String userName) {
-		
-		if(userName == null || userName.length() == 0)
-			return null;
-		
-		String propName = new StringBuilder(userName).append(".role").toString();
-		
-		String propValues = env.getProperty(propName);
-		
-		if(propValues == null || propValues.length() == 0)
-		 throw new IllegalArgumentException("userName:"+userName+" propName:"+propName+" not found");
-		
-		return propValues.split(",");
-	*/
-	//-------------------------------------------------------------
 	/**
 	 * Sets the basic realm name
 	 * @return Authentication Entry Point

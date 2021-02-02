@@ -13,7 +13,6 @@ import java.sql.Connection
 internal class OrderItemsLoaderTest{
 
 
-    @Test
     internal fun load() {
         val driver = "org.h2.Driver";
         val url = "jdbc:h2:mem:test;MODE=PostgreSQL;";

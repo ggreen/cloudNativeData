@@ -11,6 +11,7 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.0</spring-cloud.version>
+        <spring-geode.version>1.4.2</spring-geode.version>
     </properties>
 
     <parent>
@@ -31,6 +32,14 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -47,11 +56,6 @@
             <groupId>com.github.nyla-solutions</groupId>
             <artifactId>nyla.solutions.core</artifactId>
             <version>1.4.2-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.nyla-solutions</groupId>
-            <artifactId>nyla-kafka</artifactId>
-            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>io.pivotal</groupId>
@@ -85,13 +89,13 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.pivotal.gemfire</groupId>
-            <artifactId>gemfire-greenplum</artifactId>
-            <version>2.3.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/gemfire-greenplum-2.3.0.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.pivotal.gemfire</groupId>-->
+<!--            <artifactId>sgemfire-greenplum</artifactId>-->
+<!--            <version>2.3.0</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${basedir}/lib/gemfire-greenplum-2.3.0.jar</systemPath>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
@@ -102,8 +106,30 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.geode</groupId>
-            <artifactId>spring-geode-starter</artifactId>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-core</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-common</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-cq</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-logging</artifactId>
+            <version>1.13.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-lucene</artifactId>
+            <version>1.13.1</version>
         </dependency>
 
         <dependency>
@@ -128,6 +154,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+<!--s-->
         </dependencies>
     </dependencyManagement>
 

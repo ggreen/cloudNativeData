@@ -1,25 +1,30 @@
 package io.pivotal.pde.demo.cloudNativeData;
 
 import io.pivotal.gemfire.domain.CustomerFavorites;
+import io.pivotal.gemfire.domain.Product;
+import io.pivotal.gemfire.domain.ProductAssociate;
 import io.pivotal.gemfire.domain.Promotion;
+import io.pivotal.services.dataTx.geode.RegionTemplate;
 import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import io.pivotal.services.dataTx.geode.lucene.GeodeLuceneSearch;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.pdx.PdxInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Collection;
 import java.util.Queue;
+import java.util.Set;
 
 @Configuration
 public class GeodeConfig
 {
 	 //Region<Integer, Set<ProductAssociate>> productAssociationsRegion;
 	 @Bean(name = "productAssociationsRegion")
-	 public Region<String,PdxInstance> productAssociationsRegion(@Autowired GeodeClient geodeClient)
+	 public  Region<Integer, Set<ProductAssociate>> productAssociationsRegion(@Autowired GeodeClient geodeClient)
 	 {
 	         return geodeClient.getRegion("productAssociations");
 	 }//------------------------------------------------
@@ -30,6 +35,12 @@ public class GeodeConfig
 	 {
 	         return geodeClient.getRegion("products");
 	 }//------------------------------------------------
+
+	@Bean
+	public RegionTemplate productsRegionTemplate(@Qualifier("productsRegion") Region<String,PdxInstance> productsRegions)
+	{
+		return new RegionTemplate(productsRegions);
+	}//------------------------------------------------
 	@Bean
 	GeodeClient getGeodeClient()
 	{
@@ -47,7 +58,7 @@ public class GeodeConfig
 		return geodeClient.getRegion("alerts");
 	}//------------------------------------------------
 	@Bean(name = "productRecommendationsRegion")
-	public Region<String,PdxInstance> productRecommendationsRegion(@Autowired GeodeClient geodeClient)
+	public Region<String, Collection<Product>> productRecommendationsRegion(@Autowired GeodeClient geodeClient)
 	{
 		return geodeClient.getRegion("productRecommendations");
 	}//------------------------------------------------

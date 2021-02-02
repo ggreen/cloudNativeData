@@ -123,7 +123,6 @@ public class PivotMartMgr implements PivotalMartFacadeService
 		}
 		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 			throw e;

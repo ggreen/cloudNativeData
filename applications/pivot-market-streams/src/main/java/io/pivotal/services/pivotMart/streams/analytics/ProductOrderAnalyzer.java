@@ -6,7 +6,6 @@ import nyla.solutions.core.patterns.machineLearning.associations.AssociationProb
 import nyla.solutions.core.patterns.machineLearning.associations.ProductAssociation;
 import nyla.solutions.core.patterns.machineLearning.associations.ProductTransition;
 import nyla.solutions.core.patterns.observer.SubjectObserver;
-import nyla.solutions.core.util.Organizer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
