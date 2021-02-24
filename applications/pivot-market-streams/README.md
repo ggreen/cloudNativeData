@@ -127,3 +127,29 @@ cf create-user-provided-service kafkacups -p '{”brokers":"HOST:PORT","zkNodes"
 
 	bin/kafka-console-producer.sh --broker-list localhost:9092 --topic inbound
 	"0","Nyla","Nyla","777-777-7777","1,2"
+
+# Greenplum
+
+## Docker
+
+docker run -i -p 5432:5432 -t kevinmtrowbridge/greenplumdb_singlenode
+
+## Kubernetes
+
+    kubectl run --dry-run=client --image kevinmtrowbridge/greenplumdb_singlenode greenplum -o yaml
+
+    kind load docker-image kevinmtrowbridge/greenplumdb_singlenode
+
+    kubectl apply -f database/cloud/k8/greenplum.yml
+    
+
+
+Build docker images
+
+```shell script
+mvn spring-boot:build-image
+```
+
+kubectl run --dry-run=client --image pivot-market-stream:0.0.4-SNAPSHOT pivot-market-stream -o yaml
+
+

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pivot-market-stream
+  name: pivot-market-stream
+spec:
+  containers:
+    - image: pivot-market-stream:0.0.4-SNAPSHOT
+      name: pivot-market-stream
+      env:
+        - name: spring.rabbitmq.username
+          value: vmware
+        - name: spring.rabbitmq.password
+          value: tanzu
+        - name: jdbcUsername
+          value: gpadmin
+        - name: jdbcPassword
+          value: secret
+        - name: jdbcUrl
+          value: jdbc:postgresql://greenplum:5432/template1
+
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

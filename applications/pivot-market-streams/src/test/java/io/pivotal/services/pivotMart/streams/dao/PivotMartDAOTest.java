@@ -123,7 +123,7 @@ public class PivotMartDAOTest
 
         List<Promotion> list = Organizer.toList(expected);
 
-        when(jdbcTemplate.query(anyString(),any(RowMapper.class),anyInt()))
+        when(jdbcTemplate.query(anyString(),any(RowMapper.class)))
                 .thenReturn(list);
 
         Product product = null;

@@ -1,12 +1,12 @@
 package io.pivotal.services.pivotMart.streams.entity;
 
+import nyla.solutions.core.util.Organizer;
 import nyla.solutions.core.util.Text;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="ProductAssociation", schema = "pivotalmarkets")
@@ -27,6 +27,12 @@ public class ProductAssociationEntity
         setAssociations(associations);
     }
 
+    public ProductAssociationEntity(String id, String associates)
+    {
+        this.id = id;
+        setAssociations(associates != null ? Arrays.asList(associates.split("\\|")) : null);
+    }
+
     public String getId()
     {
         return id;
@@ -39,11 +45,32 @@ public class ProductAssociationEntity
 
     public String[] getAssociations()
     {
-        return associations != null ? associations.split("|") : null;
+        return this.associations != null ? associations.split("\\|") : null;
     }
 
     public void setAssociations(Collection<String> associations)
     {
         this.associations = Text.toText(associations,"|");
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductAssociationEntity entity = (ProductAssociationEntity) o;
+        return Objects.equals(id, entity.id) &&
+                Objects.equals(associations, entity.associations);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(id, associations);
+    }
+
+    public String retrieveAssociationsText()
+    {
+        return associations;
     }
 }

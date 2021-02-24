@@ -20,9 +20,9 @@ public class PivotMarketPostgreDAO
 
 	public Product findProductById(int productId)
 	{
-		String sql = "SELECT productid, productname, categoryid, subcategoryid, unit, cost, price, startdate, enddate," +
-				" createddate, lastupdateddate\n" +
-				"FROM pivotalmarkets.product;\n";
+		String sql = "SELECT productid, productname, categoryid, subcategoryid, unit, cost, price, startdate, enddate, " +
+				" createddate, lastupdateddate " +
+				" FROM pivotalmarkets.product where productid = "+productId;
 
 		ResultSetExtractor<Product> rowMapper = (ResultSet rs) ->
 		{
@@ -42,7 +42,7 @@ public class PivotMarketPostgreDAO
 			return product;
 		};
 
-		return template.query(sql,rowMapper);
+		return template.query(sql ,rowMapper);
 	}
 
 }

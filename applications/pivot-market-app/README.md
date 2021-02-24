@@ -123,17 +123,22 @@ For messages coming back to the UI, currently the UI will display in near realti
 ## GemFire
 
     start locator --name=locator
+    configure pdx --read-serialized=true
     start server --name=server --server-port=10001
+    
+    run --file=/Users/Projects/solutions/cloudNativeData/showCase/dev/cloudNativeData/applications/pivot-market-app/src/main/gfsh/setup.gfsh
+    
+    
     create lucene index --region=products --name=productIndex --field=productName
 	create region --name=products --type=PARTITION
 
-	deploy --jar=/Users/Projects/solutions/nyla/nyla-core/build/libs/nyla.solutions.core-1.4.2-SNAPSHOT.jar
+	deploy --jar=/Users/Projects/solutions/nyla/nyla-core/build/libs/nyla.solutions.core-1.4.2.jar
 	y
 	
-	deploy --jar=/Users/Projects/solutions/gedi/dev/gedi-geode/gedi-geode-extensions-core/target/gedi-geode-extensions-core-1.2.2.jar
+	deploy --jar=/Users/Projects/Pivotal/dataTx/IMDG/geode/extensions/dataTx-geode-extensions-core/components/geode-extensions-api/build/libs/dataTx-geode-extensions-core-2.5.0-SNAPSHOT.jar
 	y
 	
-	deploy --jar=/Users/Projects/Pivotal/demo/cloudNativeDataDemo/dev/cloudNativeData-IoT-retail-demo/pivot-market-domain/target/pivot-market-domain-0.0.4-SNAPSHOT.jar
+	deploy --jar=/Users/Projects/solutions/cloudNativeData/showCase/dev/cloudNativeData/components/pivot-market-domain/target/pivot-market-domain-0.0.5-SNAPSHOT.jar
 	y
 	
 	create region  --type=PARTITION --name=customerPromotions

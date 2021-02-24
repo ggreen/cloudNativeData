@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import io.pivotal.services.dataTx.geode.io.QuerierService;
+import nyla.solutions.core.patterns.jdbc.Sql;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -145,7 +146,7 @@ public class PivotMartDAO
 			marketingimageurl
 
 		 */
-		String sql  = "select * from pivotalmarkets.promotion where productid = ?";
+		String sql  = "select * from pivotalmarkets.promotion where productid = "+product.getProductId();
 		
 		System.out.println("sql:"+sql);
 		
@@ -161,7 +162,7 @@ public class PivotMartDAO
 			return p;
 		};
 		
-		List<Promotion> list = jdbcTemplate.query(sql,rm,product.getProductId());
+		List<Promotion> list = jdbcTemplate.query(sql,rm);
 		
 		return list != null ? new HashSet<Promotion>(list) : null;
 	}//------------------------------------------------
@@ -258,7 +259,7 @@ public class PivotMartDAO
 	}//------------------------------------------------
 	public Set<ProductAssociate> selectProductAssociates(Product product)
 	{
-		String sql = "select associations from pivotalmarkets.product_association where id = ?";
+		String sql = "select associations from pivotalmarkets.product_association where id = "+ SqlUtil.escape(product.getProductName());
 		
 		RowMapper<ProductAssociate> mapper = (rs,i) -> {
 			String associations = rs.getString(1);
@@ -267,7 +268,7 @@ public class PivotMartDAO
 			return pa;
 			};
 		
-		List<ProductAssociate> list = this.jdbcTemplate.query(sql, mapper,product.getProductName());
+		List<ProductAssociate> list = this.jdbcTemplate.query(sql, mapper);
 		
 		if(list == null || list.isEmpty())
 			return null;

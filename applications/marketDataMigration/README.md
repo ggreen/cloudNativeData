@@ -39,3 +39,10 @@ source ./gpAux/gpdemo/gpdemo-env.sh
 # Create and use a test database
 createdb greenplum
 psql -d greenplum
+
+
+Build docker images
+
+```shell script
+mvn spring-boot:build-image
+```
