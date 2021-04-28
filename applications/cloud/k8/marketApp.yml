@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pivot-market-app
+  name: pivot-market-app
+spec:
+  containers:
+    - image: pivot-market-app:0.0.3
+      name: pivot-market-app
+      env:
+        - name: spring.rabbitmq.username
+          value: app
+        - name: spring.rabbitmq.password
+          value: CHANGE_ME
+        - name: spring.rabbitmq.host
+          value: rabbitmq
+        - name: LOCATORS
+          value: geode-0[10334]
+        - name: SECURITY_USERNAME
+          value: admin
+        - name: SECURITY_PASSWORD
+          value: admin
+

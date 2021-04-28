@@ -1,0 +1,23 @@
+create lucene index --region=products --name=productIndex --field=productName
+create region --name=products --type=PARTITION
+
+deploy --jar=/Users/Projects/solutions/nyla/nyla-core/build/libs/nyla.solutions.core-1.4.2.jar
+y
+
+deploy --jar=/Users/Projects/Pivotal/dataTx/IMDG/geode/extensions/dataTx-geode-extensions-core/components/geode-extensions-api/build/libs/dataTx-geode-extensions-core-2.5.0-SNAPSHOT.jar
+y
+
+deploy --jar=/Users/Projects/solutions/cloudNativeData/showCase/dev/cloudNativeData/components/pivot-market-domain/target/pivot-market-domain-0.0.5-SNAPSHOT.jar
+y
+
+create region  --type=PARTITION --name=customerPromotions
+create region  --type=PARTITION --name=customerFavorites
+create region  --type=PARTITION --name=alerts
+create region  --type=PARTITION --name=users
+create region  --type=PARTITION --name=beaconProducts
+create region  --type=PARTITION --name=beaconPromotions
+create region  --type=PARTITION --name=customerLocation
+create region  --type=PARTITION --name=productAssociations
+create region  --type=PARTITION --name=products
+
+

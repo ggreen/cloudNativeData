@@ -1,0 +1,1 @@
+k apply -f /Users/Projects/solutions/cloudNativeData/showCase/dev/cloudNativeData/database/cloud/k8/greenplum.yml

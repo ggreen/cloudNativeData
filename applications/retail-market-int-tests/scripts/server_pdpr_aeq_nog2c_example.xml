@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns="http://geode.apache.org/schema/cache" xmlns:gpdb="http://schema.pivotal.io/gemfire/gpdb"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://geode.apache.org/schema/cache http://geode.apache.org/schema/cache/cache-1.0.xsd
+                        http://schema.pivotal.io/gemfire/gpdb http://schema.pivotal.io/gemfire/gpdb/gpdb-2.3.xsd"
+	version="1.0">
+
+	<async-event-queue id="TraceEventQueue" parallel="true"
+		order-policy="key" batch-size="100000" batch-time-interval="15000"
+		dispatcher-threads="16">
+		<async-event-listener>
+			<class-name>io.pivotal.gemfire.listener.ParallelDistributionPartitionedRegionAEQListener</class-name>
+			<parameter name="SCOPE"><string>distributed-no-ack</string></parameter>
+			<parameter name="ColocatedParentRegionName"><string>TRACE</string></parameter>
+			<parameter name="KeyBasedResolverName"><string>io.pivotal.gemfire.domain.TracePartitionResolver</string></parameter>
+		</async-event-listener>
+	</async-event-queue>
+
+	<pdx read-serialized="true"> <!-- persistent="false"/> -->
+		<pdx-serializer>
+			<class-name>org.apache.geode.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.gemfire.domain.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+ 	<!--  
+	<jndi-bindings>
+		<jndi-binding jndi-name="datasource" type="SimpleDataSource"
+			jdbc-driver-class="org.postgresql.Driver" user-name="gpadmin"
+			password="pivotal" connection-url="jdbc:postgresql://172.16.44.129:5432/gpadmin">
+		</jndi-binding>
+	</jndi-bindings>
+-->
+
+	<region name="TRACE">
+		<region-attributes refid="PARTITION"
+			async-event-queue-ids="TraceEventQueue">
+			<partition-attributes redundant-copies="1">
+				<partition-resolver>
+					<class-name>io.pivotal.gemfire.domain.TracePartitionResolver</class-name>
+				</partition-resolver>
+				<partition-listener>
+					<class-name>io.pivotal.gemfire.util.ParallelDistributionPartitionedRegionPartitionListener</class-name>
+					<parameter name="ATTACHED_PR">
+						<string>TRACE</string>
+					</parameter>
+					<parameter name="REGION_NAME_BASE">
+						<string>TRACE</string>
+					</parameter>
+				</partition-listener>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+	<region name="MASTER">
+		<region-attributes refid="PARTITION">
+			<partition-attributes redundant-copies="1" colocated-with="TRACE">
+				<partition-resolver>
+					<class-name>io.pivotal.gemfire.domain.TracePartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+	
+	<region name="TRACE_TRANSFORMED">
+		<region-attributes refid="PARTITION">
+			<partition-attributes redundant-copies="1" colocated-with="TRACE">
+				<partition-resolver>
+					<class-name>io.pivotal.gemfire.domain.TracePartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+			
+			<!-- 
+			<cache-listener>
+				<class-name>io.pivotal.gemfire.listener.TraceCacheListener</class-name>
+			</cache-listener>
+			-->
+		</region-attributes>
+	</region>
+
+	<region name="TRACE_GPDB">
+		<region-attributes refid="PARTITION">
+			<partition-attributes redundant-copies="1" colocated-with="TRACE">
+				<partition-resolver>
+					<class-name>io.pivotal.gemfire.domain.TracePartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+		</region-attributes>
+		<!-- 
+		<gpdb:store datasource="datasource">
+			<gpdb:types>
+				<gpdb:pdx name="io.pivotal.demo.domain.Trace" table="trace">
+					<gpdb:id>
+						<gpdb:field ref="eqpIndex" />
+						<gpdb:field ref="unitIndex" />
+						<gpdb:field ref="paramIndex" />
+						<gpdb:field ref="lotId" />
+						<gpdb:field ref="ppId" />
+						<gpdb:field ref="recipeId" />
+						<gpdb:field ref="stepSeq" />
+						<gpdb:field ref="pairId" />
+						<gpdb:field ref="processId" />
+						<gpdb:field ref="waferId" />
+						<gpdb:field ref="waferNo" />
+						<gpdb:field ref="lotType" />
+						<gpdb:field ref="statusTf" />
+					</gpdb:id>
+					<gpdb:fields>
+						<gpdb:field name="eqpIndex" />
+						<gpdb:field name="unitIndex" />
+						<gpdb:field name="paramIndex" />
+						<gpdb:field name="lotId" />
+						<gpdb:field name="ppId" />
+						<gpdb:field name="recipeId" />
+						<gpdb:field name="stepSeq" />
+						<gpdb:field name="pairId" />
+						<gpdb:field name="processId" />
+						<gpdb:field name="waferId" />
+						<gpdb:field name="waferNo" class="java.lang.Integer" />
+						<gpdb:field name="lotType" />
+						<gpdb:field name="statusTf" class="java.lang.Boolean" />
+						<gpdb:field name="ts" />
+						<gpdb:field name="vl" />
+						<gpdb:field name="ls" />
+						<gpdb:field name="us" />
+						<gpdb:field name="sl" />
+					</gpdb:fields>
+				</gpdb:pdx>
+			</gpdb:types>
+		</gpdb:store>
+		 -->
+		
+	</region>
+
+	<function-service>
+		<function>
+			<class-name>io.pivotal.gemfire.functions.PRBFunction</class-name>
+		</function>
+		<function>
+			<class-name>io.pivotal.gemfire.functions.PRBAllocationFunction</class-name>
+		</function>
+	</function-service>
+	<!--  
+	<gpdb:gpfdist port="8003" />
+	 -->
+</cache>

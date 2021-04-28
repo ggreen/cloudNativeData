@@ -1,17 +1,24 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>io.pivotal</groupId>
-  <artifactId>pivot-market-parent</artifactId>
+  <groupId>com.vmware</groupId>
+  <artifactId>retail-market-parent</artifactId>
   <version>0.1.1</version>
   <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
   <modules>
-    <module>components/pivot-market-domain</module>
-    <module>components/pivot-market-api</module>
-    <module>applications/pivot-market-app</module>
-    <module>applications/pivot-market-streams</module>
+    <module>components/retail-market-domain</module>
+    <module>components/retail-market-api</module>
+    <module>applications/retail-market-app</module>
+    <module>applications/retail-market-streams</module>
       <module>applications/marketDataMigration</module>
-    <module>applications/pivot-market-stream-processor-orders</module>
+    <module>applications/retail-market-stream-processor-orders</module>
   </modules>
   <repositories>
   <repository>

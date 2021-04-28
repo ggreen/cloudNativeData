@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns="http://geode.apache.org/schema/cache" xmlns:gpdb="http://schema.pivotal.io/gemfire/gpdb"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://geode.apache.org/schema/cache http://geode.apache.org/schema/cache/cache-1.0.xsd
+                        http://schema.pivotal.io/gemfire/gpdb http://schema.pivotal.io/gemfire/gpdb/gpdb-2.3.xsd"
+	version="1.0">
+
+
+	<pdx read-serialized="true"> <!-- persistent="false"/> -->
+		<pdx-serializer>
+			<class-name>org.apache.geode.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.gemfire.domain.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+
+	<region name="TRACE">
+		<region-attributes refid="PARTITION">
+		<!--  	async-event-queue-ids="TraceEventQueue"> -->
+			<partition-attributes redundant-copies="1" local-max-memory="0">
+				<partition-resolver>
+					<class-name>io.pivotal.gemfire.domain.TracePartitionResolver</class-name>
+				</partition-resolver>
+						<partition-listener>
+					<class-name>io.pivotal.gemfire.util.ParallelDistributionPartitionedRegionPartitionListener</class-name>
+					<parameter name="ATTACHED_PR">
+						<string>TRACE</string>
+					</parameter>
+					<parameter name="REGION_NAME_BASE">
+						<string>TRACE</string>
+					</parameter>
+				</partition-listener>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+
+	<function-service>
+		<function>
+			<class-name>io.pivotal.gemfire.functions.PRBFunction</class-name>
+		</function>
+		<function>
+			<class-name>io.pivotal.gemfire.functions.PRBAllocationFunction</class-name>
+		</function>
+	</function-service>
+
+</cache>

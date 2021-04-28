@@ -1,0 +1,199 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.pivotal</groupId>
+	<artifactId>pivot-retail-market-streams-test</artifactId>
+	<version>0.0.4</version>
+	<packaging>jar</packaging>
+
+	<name>retail-market-streams-test</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+	</properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-releasetrain</artifactId>
+				<version>Lovelace-SR2</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>com.github.nyla-solutions</groupId>
+			<artifactId>nyla.solutions.core</artifactId>
+			<version>1.1.11-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.nyla-solutions</groupId>
+			<artifactId>nyla-kafka</artifactId>
+			<version>0.0.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.nyla-solutions</groupId>
+			<artifactId>gedi-geode-extensions-core</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal</groupId>
+			<artifactId>retail-market-domain</artifactId>
+			<version>0.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal</groupId>
+			<artifactId>pivot-market-stream</artifactId>
+			<version>0.0.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<!-- <exclusion> -->
+				<!-- <groupId>log4j</groupId> -->
+				<!-- <artifactId>*</artifactId> -->
+				<!-- </exclusion> -->
+				<!-- <exclusion> -->
+				<!-- <groupId>org.slf4j</groupId> -->
+				<!-- <artifactId>*</artifactId> -->
+				<!-- </exclusion> -->
+				<!-- <exclusion> -->
+				<!-- <groupId>org.apache.logging.log4j</groupId> -->
+				<!-- <artifactId>*</artifactId> -->
+				<!-- </exclusion> -->
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
+			<version>4.12</version> <scope>test</scope> </dependency> -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<!-- <version>9.4.1212</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-core</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-wan</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-cq</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-lucene</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-common</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>gemfire-greenplum</artifactId>
+			<version>2.3.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/gemfire-greenplum-2.3.0.jar</systemPath>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<!-- <version>2.5.0</version> -->
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<!-- <version>4.12</version> -->
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<!-- <version>2.7.19</version> -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<!-- https://commercial-repo.pivotal.io/application/repository?prefix=gemfire-release-repo -->
+		<repository>
+			<id>gemfire-release-repo</id>
+			<name>Pivotal GemFire Release Repository</name>
+			<url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url>
+		</repository>
+
+	</repositories>
+
+
+</project>

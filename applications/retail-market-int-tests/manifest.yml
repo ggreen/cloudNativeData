@@ -1,0 +1,6 @@
+---
+applications:
+- name: pivotMarketStreams 
+  memory: 4G 
+  env:
+      BOOTSTRAP_SERVERS_CONFIG: ec2-35-174-17-30.compute-1.amazonaws.com:9092
