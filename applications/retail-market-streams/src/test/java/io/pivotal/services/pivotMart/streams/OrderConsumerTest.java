@@ -1,7 +1,8 @@
 package io.pivotal.services.pivotMart.streams;
 
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.retail.store.domain.OrderDTO;
 import io.pivotal.services.pivotMart.streams.consumers.OrderConsumer;
+import io.pivotal.services.pivotMart.streams.service.PivotMartStreamService;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

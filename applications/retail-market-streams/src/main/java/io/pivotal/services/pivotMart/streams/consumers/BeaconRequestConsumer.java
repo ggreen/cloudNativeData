@@ -1,7 +1,7 @@
 package io.pivotal.services.pivotMart.streams.consumers;
 
-import io.pivotal.gemfire.domain.BeaconRequest;
-import io.pivotal.services.pivotMart.streams.PivotMartStreamService;
+import com.vmware.data.retail.store.domain.BeaconRequest;
+import io.pivotal.services.pivotMart.streams.service.PivotMartStreamService;
 
 import java.util.function.Consumer;
 

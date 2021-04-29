@@ -1,8 +1,7 @@
 package io.pivotal.services.pivotMart.streams.consumers;
 
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.services.pivotMart.streams.PivotMartStreamService;
-import org.springframework.stereotype.Component;
+import com.vmware.data.retail.store.domain.OrderDTO;
+import io.pivotal.services.pivotMart.streams.service.PivotMartStreamService;
 
 import java.util.function.Consumer;
 

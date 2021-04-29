@@ -1,6 +1,6 @@
 package io.pivotal.services.pivotMart.streams.dao;
 
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.retail.store.domain.*;
 import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
@@ -45,8 +45,8 @@ public class PivotMartDAOTest
     void queryOrderCount()
     {
         long expected = 3;
-        when(jdbcTemplate.queryForObject(anyString(),any(Class.class))).thenReturn(expected);
-        assertEquals(expected,subject.queryOrderCount());
+        when(jdbcTemplate.queryForObject(anyString(), any(Class.class))).thenReturn(expected);
+        assertEquals(expected, subject.queryOrderCount());
     }
 
     @Test
@@ -70,8 +70,8 @@ public class PivotMartDAOTest
         List<CustomerFavorites> expectedCustomers = Organizer.toList(expectedCustomer);
 
         //int customerId = this.jdbcTemplate.queryForObject(sql,Integer.class,firstName,lastName);
-        when(jdbcTemplate.queryForObject(anyString(),any(Class.class),anyString(),anyString())).thenReturn(expectedCustomerId);
-        when(jdbcTemplate.query(anyString(), any(RowMapper.class),anyInt())).thenReturn(expectedCustomers);
+        when(jdbcTemplate.queryForObject(anyString(), any(Class.class), anyString(), anyString())).thenReturn(expectedCustomerId);
+        when(jdbcTemplate.query(anyString(), any(RowMapper.class), anyInt())).thenReturn(expectedCustomers);
 
 
         CustomerIdentifier customer = new CustomerIdentifier();
@@ -92,12 +92,12 @@ public class PivotMartDAOTest
     @Test
     public void testSelectProductsByBeacon()
     {
-        Product expected =  new JavaBeanGeneratorCreator<Product>(Product.class)
+        Product expected = new JavaBeanGeneratorCreator<Product>(Product.class)
                 .randomizeAll().create();
 
         List<Product> list = Organizer.toList(expected);
 
-        when(jdbcTemplate.query(anyString(),any(Object[].class),any(RowMapper.class)))
+        when(jdbcTemplate.query(anyString(), any(Object[].class), any(RowMapper.class)))
                 .thenReturn(list);
 
         Beacon beacon = new Beacon();
@@ -123,7 +123,7 @@ public class PivotMartDAOTest
 
         List<Promotion> list = Organizer.toList(expected);
 
-        when(jdbcTemplate.query(anyString(),any(RowMapper.class)))
+        when(jdbcTemplate.query(anyString(), any(RowMapper.class)))
                 .thenReturn(list);
 
         Product product = null;

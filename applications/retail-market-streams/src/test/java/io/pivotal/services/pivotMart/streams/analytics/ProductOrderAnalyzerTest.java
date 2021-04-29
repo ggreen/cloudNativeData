@@ -1,7 +1,7 @@
 package io.pivotal.services.pivotMart.streams.analytics;
 
+import io.pivotal.market.api.dao.ProductAssociationEntity;
 import io.pivotal.services.pivotMart.streams.dao.AssociateRepository;
-import io.pivotal.services.pivotMart.streams.entity.ProductAssociationEntity;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import nyla.solutions.core.patterns.machineLearning.associations.AssociationProbabilities;
 import nyla.solutions.core.patterns.machineLearning.associations.ProductAssociation;

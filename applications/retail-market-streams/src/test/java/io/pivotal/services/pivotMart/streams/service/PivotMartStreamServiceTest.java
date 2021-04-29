@@ -1,10 +1,10 @@
-package io.pivotal.services.pivotMart.streams;
+package io.pivotal.services.pivotMart.streams.service;
 
 import com.google.gson.Gson;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.services.pivotMart.streams.dao.PivotMartDAO;
+import com.vmware.data.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.retail.store.domain.OrderDTO;
+import com.vmware.data.retail.store.domain.Product;
+import io.pivotal.market.api.dao.PivotMartDAO;
 import nyla.solutions.core.io.csv.CsvWriter;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
 import nyla.solutions.core.util.Organizer;
@@ -87,9 +87,6 @@ public class PivotMartStreamServiceTest
 			
 			assertArrayEquals(out.getProductIds(),orderDTO.getProductIds());
 		}
-		
-		
-		
 	}
 
 	public void testOrders()

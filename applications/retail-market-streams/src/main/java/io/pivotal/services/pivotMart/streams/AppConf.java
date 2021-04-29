@@ -1,15 +1,13 @@
 package io.pivotal.services.pivotMart.streams;
 
-import io.pivotal.gemfire.domain.BeaconRequest;
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.retail.store.domain.BeaconRequest;
+import com.vmware.data.retail.store.domain.OrderDTO;
 import io.pivotal.services.pivotMart.streams.consumers.BeaconRequestConsumer;
 import io.pivotal.services.pivotMart.streams.consumers.OrderConsumer;
+import io.pivotal.services.pivotMart.streams.service.PivotMartStreamService;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

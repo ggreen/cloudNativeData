@@ -1,30 +1,14 @@
 package io.pivotal.services.pivotMart.streams.dao;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
+import com.vmware.data.retail.store.domain.*;
+import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
-import nyla.solutions.core.patterns.jdbc.Sql;
+import nyla.solutions.core.util.Text;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.Customer;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.ProductQuantity;
-import io.pivotal.gemfire.domain.Promotion;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
-import nyla.solutions.core.util.Text;
+import java.util.*;
 
 public class PivotMartDAO
 {
@@ -264,7 +248,7 @@ public class PivotMartDAO
 		RowMapper<ProductAssociate> mapper = (rs,i) -> {
 			String associations = rs.getString(1);
 			String[] postsArray= associations != null? associations.split("|") : null;
-			ProductAssociate pa = new ProductAssociate(product.getProductName(), postsArray);
+			ProductAssociate pa = new ProductAssociate(postsArray,product.getProductName());
 			return pa;
 			};
 		

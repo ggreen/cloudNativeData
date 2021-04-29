@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import java.util.*
 
 data class Product(
-    open var productId: Int = 0,
+    var productId: Int = 0,
     var productName: String = "",
     var categoryId: String = "",
     var subCategoryId: String = "",

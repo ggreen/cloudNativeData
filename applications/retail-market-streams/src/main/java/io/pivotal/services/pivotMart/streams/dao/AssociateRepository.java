@@ -1,6 +1,6 @@
 package io.pivotal.services.pivotMart.streams.dao;
 
-import io.pivotal.services.pivotMart.streams.entity.ProductAssociationEntity;
+import io.pivotal.market.api.dao.ProductAssociationEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 

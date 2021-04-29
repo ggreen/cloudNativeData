@@ -1,9 +1,7 @@
-package io.pivotal.services.pivotMart.streams;
+package io.pivotal.services.pivotMart.streams.service;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import io.pivotal.gemfire.domain.*;
-import io.pivotal.services.pivotMart.streams.dao.PivotMartDAO;
+import com.vmware.data.retail.store.domain.*;
+import io.pivotal.market.api.dao.PivotMartDAO;
 import nyla.solutions.core.io.csv.CsvReader;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
 import nyla.solutions.core.patterns.workthread.MemorizedQueue;
@@ -12,12 +10,10 @@ import nyla.solutions.core.util.Organizer;
 import nyla.solutions.core.util.Text;
 import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
 
 @RestController
 public class PivotMartStreamService
@@ -170,6 +166,7 @@ public class PivotMartStreamService
         return true;
 
     }//------------------------------------------------
+
     public int processOrder(OrderDTO order)
     {
         Debugger.println(this, "process Order %s", order);
@@ -197,7 +194,7 @@ public class PivotMartStreamService
         if (products == null)
             return;
 
-		Set<ProductAssociate> productAssociation = null;
+        Set<ProductAssociate> productAssociation = null;
         for (Product product : products) {
             productAssociation = dao.selectProductAssociates(product);
 

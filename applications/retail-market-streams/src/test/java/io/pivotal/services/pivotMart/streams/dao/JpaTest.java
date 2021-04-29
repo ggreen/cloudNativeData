@@ -1,6 +1,6 @@
 package io.pivotal.services.pivotMart.streams.dao;
 
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.retail.store.domain.Product;
 import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import io.pivotal.services.pivotMart.streams.AppConf;
 import org.junit.jupiter.api.Disabled;

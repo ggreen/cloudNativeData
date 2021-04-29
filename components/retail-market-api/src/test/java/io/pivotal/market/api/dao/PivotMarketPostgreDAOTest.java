@@ -1,4 +1,4 @@
-package io.pivotal.market.dao;
+package io.pivotal.market.api.dao;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 
 import com.vmware.data.retail.store.domain.Product;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +30,6 @@ public class PivotMarketPostgreDAOTest
 		Product actual = dao.findProductById(productId);
 		
 		assertNotNull(actual);
-
 
 		assertEquals(expected,actual);
 	}

@@ -3,11 +3,11 @@ package com.vmware.data.services.demo.cloudNativeData.services;
 import com.vmware.data.retail.store.domain.BeaconRequest;
 import com.vmware.data.retail.store.domain.CustomerFavorites;
 import com.vmware.data.retail.store.domain.Promotion;
-import com.vmware.data.services.demo.cloudNativeData.customer.CustomerMgr;
 import nyla.solutions.core.data.collections.QueueSupplier;
 import org.apache.geode.cache.client.ClientCache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import com.vmware.data.services.demo.cloudNativeData.customer.CustomerMgr;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
