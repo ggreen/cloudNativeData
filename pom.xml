@@ -8,7 +8,7 @@
   <modules>
     <module>components/pivot-market-domain</module>
     <module>components/pivot-market-api</module>
-    <module>applications/pivot-market-app</module>
+    <module>applications/retail-store-app</module>
     <module>applications/pivot-market-streams</module>
       <module>applications/marketDataMigration</module>
     <module>applications/pivot-market-stream-processor-orders</module>

@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.pivotal</groupId>
-    <artifactId>pivot-market-app</artifactId>
+    <artifactId>retail-store-app</artifactId>
     <version>0.0.3</version>
     <packaging>jar</packaging>
-    <name>pivot-market-app</name>
-    <description>pivot-market-app</description>
+    <name>retail-store-app</name>
+    <description>retail-store-app</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
