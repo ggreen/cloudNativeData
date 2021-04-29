@@ -7,10 +7,9 @@
   <link rel="stylesheet" type="text/css" href="main.css"></link>
 <head>
 <body>
-	<p class="pivotalBannerImg">
-		<a href="/"><img src="img/pivotal.png"/></a>
+	<p class="banner">
+		 <a href="/"><img src="img/logo.png"/></a> <span class="header"> Retail Store</span>
 	</p>
-	<br/>
 	<div>
 		<form action="/login" method="post">       
 		    <p>

@@ -36,12 +36,12 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="">Cloud Native Data Demo</a>
+        <a class="navbar-brand" href="">Retail Store Demo</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
-          <li><a href="https://github.com/Pivotal-Data-Engineering/CloudNativeDataDemo">Source (GitHub - Private)</a></li>
-          <li><a href="https://pivotal.io/">Pivotal.io</a></li>
+          <li><a href=" https://github.com/ggreen/cloudNativeData">Source (GitHub - Private)</a></li>
+          <li><a href="https://tanzu.vmware.com/">tanzu.vmware.com</a></li>
           <li><a href="logout"><strong>Logout</strong></a></li>
           
         </ul>
@@ -67,7 +67,7 @@
 
       <div id="mainPanel" class="col-sm-9">
    
-        <h1>Pivot Mart</h1>
+        <h1>Retail Store</h1>
          <div>
         	<strong>Hello ${userName}</strong>  ->  <a href="#" onclick="window.open('store','storeWindwow','menubar=no,resizable=yes,scrollbars=yes,toolbar=no,titlebar=no');return false;">Walk around in STORE</a>
         </div>
