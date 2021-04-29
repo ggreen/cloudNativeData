@@ -25,13 +25,18 @@ body {
 {
 	color: red;
 }
-.pivotalBannerImg img
+.banner img
 {
 	padding-left: 10px;
 	padding-bottom: 10 px;
-	height: 30px;
+	height: 60px;
 }
 
+.header
+{
+    font-weight: bold;
+    font-size: medium;
+}
 #favorites table
 {
 	border-collapse: separate;

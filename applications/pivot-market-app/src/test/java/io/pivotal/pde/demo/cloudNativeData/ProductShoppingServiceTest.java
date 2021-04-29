@@ -1,7 +1,7 @@
 package io.pivotal.pde.demo.cloudNativeData;
 
-import gedi.solutions.geode.spring.security.SpringSecurityUserService;
-import gedi.solutions.geode.spring.security.data.UserProfileDetails;
+import com.vmware.dataTx.geode.spring.security.SpringSecurityUserService;
+import com.vmware.dataTx.geode.spring.security.data.UserProfileDetails;
 import io.pivotal.gemfire.domain.OrderDTO;
 import io.pivotal.gemfire.domain.Product;
 import io.pivotal.gemfire.domain.ProductAssociate;
@@ -15,13 +15,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.messaging.MessageChannel;
 
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Queue;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;

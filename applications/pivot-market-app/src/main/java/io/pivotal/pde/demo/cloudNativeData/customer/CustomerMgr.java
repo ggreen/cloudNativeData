@@ -4,12 +4,12 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import com.vmware.dataTx.geode.spring.security.SpringSecurityUserService;
+import com.vmware.dataTx.geode.spring.security.data.UserProfileDetails;
 import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import gedi.solutions.geode.spring.security.SpringSecurityUserService;
-import gedi.solutions.geode.spring.security.data.UserProfileDetails;
 import io.pivotal.gemfire.domain.CustomerFavorites;
 import io.pivotal.gemfire.domain.CustomerIdentifier;
 import io.pivotal.gemfire.domain.Promotion;

@@ -1,7 +1,7 @@
 package io.pivotal.pde.demo.cloudNativeData;
 
-import gedi.solutions.geode.spring.security.GeodeUserDetailsService;
-import gedi.solutions.geode.spring.security.SpringSecurityUserService;
+import com.vmware.dataTx.geode.spring.security.GeodeUserDetailsService;
+import com.vmware.dataTx.geode.spring.security.SpringSecurityUserService;
 import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

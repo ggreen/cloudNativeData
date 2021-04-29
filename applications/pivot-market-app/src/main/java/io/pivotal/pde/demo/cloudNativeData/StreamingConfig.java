@@ -12,7 +12,7 @@ import java.util.Queue;
 @Configuration
 public class StreamingConfig
 {
-    @Value("${spring.cloud.function.definition}")
+    @Value("${spring.cloud.function.definition:beaconRequests}")
     private String springCloudFunctionDefinition;
 
     @Bean("beaconRequests")

@@ -1,7 +1,7 @@
 package io.pivotal.pde.demo.cloudNativeData.services;
 
-import gedi.solutions.geode.spring.security.SpringSecurityUserService;
-import gedi.solutions.geode.spring.security.data.UserProfileDetails;
+import com.vmware.dataTx.geode.spring.security.SpringSecurityUserService;
+import com.vmware.dataTx.geode.spring.security.data.UserProfileDetails;
 import io.pivotal.gemfire.domain.*;
 import io.pivotal.services.dataTx.geode.RegionTemplate;
 import io.pivotal.services.dataTx.geode.lucene.GeodeLuceneSearch;
