@@ -9,9 +9,9 @@
     <module>components/pivot-market-domain</module>
     <module>components/pivot-market-api</module>
     <module>applications/retail-store-app</module>
-    <module>applications/pivot-market-streams</module>
+    <module>applications/retail-analytics-stream</module>
       <module>applications/marketDataMigration</module>
-    <module>applications/pivot-market-stream-processor-orders</module>
+    <module>applications/retail-processor-orders-stream</module>
   </modules>
   <repositories>
   <repository>
