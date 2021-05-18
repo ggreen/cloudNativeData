@@ -1,8 +1,9 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
-import io.pivotal.services.dataTx.geode.io.QuerierService;
 import com.vmware.data.demo.retail.store.analytics.streams.dao.RetailAnalyticsDAO;
+import io.pivotal.gemfire.domain.Product;
+import io.pivotal.market.api.product.ProductJdbcDao;
+import io.pivotal.services.dataTx.geode.io.QuerierService;
 import nyla.solutions.core.patterns.machineLearning.associations.AssociationProbabilities;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -19,13 +20,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses = {PivotMarketPostgreDAO.class})
-//        (basePackages = {"io.pivotal.market.api.dao", "io.pivotal.services.pivotMart.streams"})
-//@ComponentScan( basePackages =
-//        {"io.pivotal.market.api",
-//                "io.pivotal.services.pivotMart.streams"})
+@ComponentScan(basePackageClasses = {ProductJdbcDao.class})
 @EntityScan
-//        ( basePackages = {"io.pivotal.market.api", "io.pivotal.services.pivotMart.streams"})
 public class DatabaseConfig
 {
     @Bean
@@ -77,7 +73,7 @@ public class DatabaseConfig
     @Bean
     public RetailAnalyticsDAO dao(DataSource dataSource,
                                   JdbcTemplate jdbcTemplate,
-                                  PivotMarketPostgreDAO pivotMarketPostgreDAO, QuerierService querierService)
+                                  ProductJdbcDao pivotMarketPostgreDAO, QuerierService querierService)
     {
         return new RetailAnalyticsDAO(jdbcTemplate, pivotMarketPostgreDAO, querierService);
     }//------------------------------------------------

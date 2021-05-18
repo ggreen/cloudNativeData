@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import io.pivotal.market.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,18 +22,17 @@ import io.pivotal.gemfire.domain.Product;
 import io.pivotal.gemfire.domain.ProductAssociate;
 import io.pivotal.gemfire.domain.ProductQuantity;
 import io.pivotal.gemfire.domain.Promotion;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
 import nyla.solutions.core.util.Text;
 
 public class RetailAnalyticsDAO
 {
 	private final JdbcTemplate jdbcTemplate;
-	private final PivotMarketPostgreDAO pivotMarketPostgreDAO;
+	private final ProductJdbcDao pivotMarketPostgreDAO;
 	
 	private final QuerierService querierService;
 	private String countSql = "select count(*) from pivotalmarkets.orders";
 
-	public RetailAnalyticsDAO(JdbcTemplate jdbcTemplate, PivotMarketPostgreDAO pivotMarketPostgreDAO,
+	public RetailAnalyticsDAO(JdbcTemplate jdbcTemplate, ProductJdbcDao pivotMarketPostgreDAO,
 							  QuerierService querierService)
 	{
 		this.jdbcTemplate = jdbcTemplate;

@@ -2,7 +2,7 @@ package com.vmware.data.demo.retail.store.analytics.streams.dao;
 
 import com.vmware.data.demo.retail.store.analytics.streams.AppConf;
 import io.pivotal.gemfire.domain.Product;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
+import io.pivotal.market.api.product.ProductJdbcDao;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class JpaTest
 {
 	@Autowired
-	PivotMarketPostgreDAO dao;
+	ProductJdbcDao dao;
 
 	@Test
 	public void test()

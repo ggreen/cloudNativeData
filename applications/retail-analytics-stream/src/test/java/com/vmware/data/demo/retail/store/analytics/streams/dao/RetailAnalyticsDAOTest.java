@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.analytics.streams.dao;
 
 import io.pivotal.gemfire.domain.*;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
+import io.pivotal.market.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import nyla.solutions.core.util.Organizer;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class RetailAnalyticsDAOTest
 {
     @Mock
-    private PivotMarketPostgreDAO pivotMarketPostgreDAO;
+    private ProductJdbcDao pivotMarketPostgreDAO;
 
     private RetailAnalyticsDAO subject;
 

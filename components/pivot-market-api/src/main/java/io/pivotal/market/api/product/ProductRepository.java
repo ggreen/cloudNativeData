@@ -1,10 +1,8 @@
-package io.pivotal.market.api.dao;
+package io.pivotal.market.api.product;
 
+import io.pivotal.market.api.product.ProductEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import io.pivotal.gemfire.domain.Product;
-
-import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends CrudRepository<ProductEntity,Integer>

@@ -1,11 +1,14 @@
 package io.pivotal.market.api;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 
 import io.pivotal.gemfire.domain.CustomerIdentifier;
 import nyla.solutions.core.io.IO;
+import org.junit.jupiter.api.Test;
+
+import static org.jgroups.util.Util.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class MarketCsvBuilderTest
 {
 

@@ -1,4 +1,4 @@
-package io.pivotal.market.api.dao;
+package io.pivotal.market.api.product;
 
 import io.pivotal.gemfire.domain.Product;
 

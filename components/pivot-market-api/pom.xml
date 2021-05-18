@@ -6,6 +6,18 @@
 	<groupId>io.pivotal</groupId>
 	<artifactId>pivot-market-api</artifactId>
 	<version>0.1.3-SNAPSHOT</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>10</source>
+					<target>10</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<packaging>jar</packaging>
 	<name>pivot-market-api</name>
 	<properties>
@@ -17,14 +29,11 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.2</version>
+		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>io.pivotal.services.dataTx</groupId>
 			<artifactId>dataTx-geode-extensions-core</artifactId>
@@ -35,6 +44,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -43,27 +53,12 @@
 		<dependency>
 			<groupId>com.github.nyla-solutions</groupId>
 			<artifactId>nyla.solutions.core</artifactId>
-			<version>1.4.1</version>
+			<version>1.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>io.pivotal</groupId>
 			<artifactId>pivot-market-domain</artifactId>
 			<version>0.0.5-SNAPSHOT</version>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.github.nyla-solutions</groupId>-->
-<!--			<artifactId>gedi-geode-extensions-core</artifactId>-->
-<!--			<version>1.2.0</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.data</groupId>-->
-<!--			<artifactId>spring-data-jpa</artifactId>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.geode</groupId>
@@ -90,32 +85,25 @@
 			<artifactId>geode-common</artifactId>
 			<version>${geode.version}</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>commons-lang</groupId>-->
-<!--			<artifactId>commons-lang</artifactId>-->
-<!--			<version>2.5</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.5.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>3.7.0</version>
+			<artifactId>mockito-junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/libs-milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 </project>
