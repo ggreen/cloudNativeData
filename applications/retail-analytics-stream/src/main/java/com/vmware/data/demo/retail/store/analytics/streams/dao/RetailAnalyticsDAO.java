@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import io.pivotal.market.api.product.ProductJdbcDao;
+import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

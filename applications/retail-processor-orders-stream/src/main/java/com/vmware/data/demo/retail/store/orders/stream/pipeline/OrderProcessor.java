@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.orders.stream.pipeline;
 
+import com.vmware.data.demo.retail.store.api.order.OrderMgmt;
 import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.market.api.PivotalMartFacadeService;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.Message;
@@ -13,9 +13,9 @@ import java.util.function.Function;
 public class OrderProcessor implements Function<String,Collection<OrderDTO>>
 {
 
-    private final PivotalMartFacadeService service;
+    private final OrderMgmt service;
 
-    public OrderProcessor(PivotalMartFacadeService service)
+    public OrderProcessor(OrderMgmt service)
     {
         this.service = service;
     }

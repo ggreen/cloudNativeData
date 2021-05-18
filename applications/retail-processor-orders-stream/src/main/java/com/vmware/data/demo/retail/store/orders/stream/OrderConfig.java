@@ -1,12 +1,13 @@
 package com.vmware.data.demo.retail.store.orders.stream;
 
-import java.beans.PropertyVetoException;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
+import com.vmware.data.demo.retail.store.api.customer.CustomerDao;
+import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
+import com.vmware.data.demo.retail.store.api.order.OrderMgmt;
+import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
+import io.pivotal.gemfire.domain.CustomerFavorites;
+import io.pivotal.gemfire.domain.Product;
+import io.pivotal.gemfire.domain.ProductAssociate;
+import io.pivotal.gemfire.domain.Promotion;
 import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -19,14 +20,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.Promotion;
-import io.pivotal.market.api.PivotMartMgr;
-import io.pivotal.market.api.PivotalMartFacadeService;
-import io.pivotal.market.api.dao.PivotMarketPostgreDAO;
-import io.pivotal.market.api.dao.PivotMartDAO;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
+import java.util.Properties;
+import java.util.Set;
 
 
 @Configuration
@@ -35,16 +34,23 @@ import io.pivotal.market.api.dao.PivotMartDAO;
 public class OrderConfig
 {
     @Bean
-	public PivotalMartFacadeService pivotMartFacadeService()
+	public OrderMgmt orderMgmt(OrderJdbcDAO orderDao,
+							   Region<String, Set<CustomerFavorites>> customerFavoritesRegion,
+							   Region<Integer, Set<ProductAssociate>> productAssociationsRegion, CustomerDao customerDao)
 	{
-		return new PivotMartMgr();
+		return new OrderMgmt(orderDao,
+				customerFavoritesRegion,
+				productAssociationsRegion,
+				customerDao);
 	}
 
     @Bean
-	public PivotMarketPostgreDAO postreDao()
+	public OrderJdbcDAO orderJdbcDAO(JdbcTemplate jdbcTemplate, ProductJdbcDao productDao,
+									 QuerierService querierService, CustomerDao customerFavoriteDao)
 	{
 		
-		return new PivotMarketPostgreDAO();
+		return new OrderJdbcDAO(jdbcTemplate, productDao, querierService,
+				customerFavoriteDao);
 		
 	}//------------------------------------------------
 	
@@ -134,7 +140,6 @@ public class OrderConfig
 		return GeodeClient.connect().getRegion("customerLocation");
 	}
 	
-	//productsRegion
 	@Bean("productsRegion")
 	public Region<Integer,Product> productsRegion()
 	{
@@ -153,18 +158,21 @@ public class OrderConfig
 	{
 		return GeodeClient.connect().getRegion("productAssociations");
 	}
-	
+
 	@Bean
-	public PivotMartDAO dao(DataSource dataSource)
+	public ProductJdbcDao productJdbcDao(JdbcTemplate jdbcTemplate )
 	{
-		PivotMartDAO pivotMartDAO = new PivotMartDAO();
-		pivotMartDAO.setJdbcTemplate(this.jdbcTemplate(dataSource));
-		
-		return pivotMartDAO;
-	}//------------------------------------------------
-	
+		return new ProductJdbcDao(jdbcTemplate);
+	}
+
 	@Bean
-	QuerierService querierService()
+	public CustomerDao customerDao(ProductJdbcDao productJdbcDao,JdbcTemplate jdbcTemplate )
+	{
+		return new CustomerDao(productJdbcDao,jdbcTemplate);
+	}
+
+	@Bean
+	public QuerierService querierService()
 	{
 		return GeodeClient.connect().getQuerierService();
 	}

@@ -2,7 +2,7 @@ package com.vmware.data.demo.retail.store.analytics.streams.dao;
 
 import com.vmware.data.demo.retail.store.analytics.streams.AppConf;
 import io.pivotal.gemfire.domain.Product;
-import io.pivotal.market.api.product.ProductJdbcDao;
+import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

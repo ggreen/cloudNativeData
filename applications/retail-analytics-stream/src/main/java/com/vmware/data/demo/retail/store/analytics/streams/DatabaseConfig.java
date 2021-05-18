@@ -1,8 +1,7 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
 import com.vmware.data.demo.retail.store.analytics.streams.dao.RetailAnalyticsDAO;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.market.api.product.ProductJdbcDao;
+import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import nyla.solutions.core.patterns.machineLearning.associations.AssociationProbabilities;
 import org.apache.commons.dbcp2.BasicDataSource;

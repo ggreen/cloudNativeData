@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.orders.stream.pipeline;
 
+import com.vmware.data.demo.retail.store.api.order.OrderMgmt;
 import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.market.api.PivotalMartFacadeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class OrderProcessorTest
 {
 	@Mock
-	private PivotalMartFacadeService service;
+	private OrderMgmt service;
 
 	@Test
 	public void testProcess()
