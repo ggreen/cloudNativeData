@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import com.vmware.data.demo.retail.store.analytics.streams.consumers.OrderConsumer;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;

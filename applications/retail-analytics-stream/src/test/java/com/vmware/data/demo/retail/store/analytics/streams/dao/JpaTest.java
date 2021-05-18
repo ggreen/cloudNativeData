@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.analytics.streams.dao;
 
 import com.vmware.data.demo.retail.store.analytics.streams.AppConf;
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.demo.retail.store.domain.Product;
 import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

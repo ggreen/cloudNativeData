@@ -10,9 +10,9 @@ import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.Promotion;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 
 @Component
 public class CustomerMgr

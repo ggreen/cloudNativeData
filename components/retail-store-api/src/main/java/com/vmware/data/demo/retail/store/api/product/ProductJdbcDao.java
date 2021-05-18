@@ -1,10 +1,9 @@
 package com.vmware.data.demo.retail.store.api.product;
 
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.Promotion;
-import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
+import com.vmware.data.demo.retail.store.domain.Beacon;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
@@ -55,7 +54,7 @@ public class ProductJdbcDao
         return list != null ? new HashSet<Product>(list) : null;
     }
 
-    public java.util.Set<io.pivotal.gemfire.domain.Promotion> selectPromotionsByProduct(io.pivotal.gemfire.domain.Product product)
+    public java.util.Set<Promotion> selectPromotionsByProduct(Product product)
     {
         if (product == null)
             return null;
@@ -133,7 +132,7 @@ public class ProductJdbcDao
         RowMapper<ProductAssociate> mapper = (rs, i) -> {
             Array posts = rs.getArray(2);
             String[] postsArray = (String[]) posts.getArray();
-            ProductAssociate pa = new ProductAssociate(rs.getString(1), postsArray);
+            ProductAssociate pa = new ProductAssociate(postsArray,rs.getString(1));
             return pa;
         };
 

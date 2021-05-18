@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.api.customer;
 
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.demo.retail.store.domain.*;
 import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
 import com.vmware.data.demo.retail.store.api.product.ProductCacheLoader;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;

@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.api.order;
 
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.demo.retail.store.domain.*;
 import com.vmware.data.demo.retail.store.api.customer.CustomerDao;
 import nyla.solutions.core.util.Debugger;
 import org.apache.geode.cache.Region;

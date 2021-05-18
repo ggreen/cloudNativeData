@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
-import io.pivotal.gemfire.domain.BeaconRequest;
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.BeaconRequest;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import com.vmware.data.demo.retail.store.analytics.streams.consumers.BeaconRequestConsumer;
 import com.vmware.data.demo.retail.store.analytics.streams.consumers.OrderConsumer;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;

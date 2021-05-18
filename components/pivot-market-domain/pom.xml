@@ -8,53 +8,55 @@
 
 	<properties>
 		<gemfire_version>9.3.0</gemfire_version>
+		<java.version>11</java.version>
 	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.8.0</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<release>11</release>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.20</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.projectlombok</groupId>-->
+<!--				<artifactId>lombok-maven-plugin</artifactId>-->
+<!--				<version>1.16.8.0</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>delombok</id>-->
+<!--						<phase>generate-sources</phase>-->
+<!--						<goals>-->
+<!--							<goal>delombok</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<encoding>UTF-8</encoding>-->
+<!--							<addOutputDirectory>false</addOutputDirectory>-->
+<!--							<sourceDirectory>src/main/java</sourceDirectory>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
-
-	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>io.pivotal.gemfire</groupId>-->
-<!--			<artifactId>geode-core</artifactId>-->
-<!--			<version>${gemfire_version}</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>io.pivotal.gemfire</groupId>-->
-<!--			<artifactId>geode-common</artifactId>-->
-<!--			<version>${gemfire_version}</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>commons-lang</groupId>-->
-<!--			<artifactId>commons-lang</artifactId>-->
-<!--			<version>2.6</version>-->
-<!--		</dependency>-->
-	</dependencies>
-
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>spring-libs-release</id>-->
-<!--			<url>http://repo.spring.io/libs-release/</url>-->
-<!--			<name>spring-libs-release</name>-->
-<!--		</repository>-->
-<!--		<repository>-->
-<!--			<id>central</id>-->
-<!--			<url>http://repo1.maven.org/maven2</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--		</repository>-->
-<!--	</repositories>-->
 
 </project>

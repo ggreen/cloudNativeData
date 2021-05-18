@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.analytics.streams.consumers;
 
 import com.vmware.data.demo.retail.store.analytics.streams.RetailStreamAnalyticsService;
-import io.pivotal.gemfire.domain.BeaconRequest;
+import com.vmware.data.demo.retail.store.domain.BeaconRequest;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

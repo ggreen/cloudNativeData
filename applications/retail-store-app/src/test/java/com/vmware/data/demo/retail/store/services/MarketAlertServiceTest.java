@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.services;
 
-import io.pivotal.gemfire.domain.BeaconRequest;
+import com.vmware.data.demo.retail.store.domain.BeaconRequest;
 import com.vmware.data.demo.retail.store.customer.CustomerMgr;
 import nyla.solutions.core.data.collections.QueueSupplier;
 import org.apache.geode.cache.client.ClientCache;

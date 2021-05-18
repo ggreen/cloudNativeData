@@ -1,9 +1,8 @@
 package com.vmware.data.demo.retail.store.api.product;
 
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
+import com.vmware.data.demo.retail.store.domain.Beacon;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

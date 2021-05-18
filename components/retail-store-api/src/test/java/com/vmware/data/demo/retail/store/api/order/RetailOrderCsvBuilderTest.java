@@ -1,8 +1,7 @@
 package com.vmware.data.demo.retail.store.api.order;
 
 
-import com.vmware.data.demo.retail.store.api.order.RetailOrderCsvBuilder;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
 import nyla.solutions.core.io.IO;
 import org.junit.jupiter.api.Test;
 

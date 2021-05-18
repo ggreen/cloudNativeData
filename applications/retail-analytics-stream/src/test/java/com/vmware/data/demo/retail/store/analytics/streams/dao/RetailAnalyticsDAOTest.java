@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.analytics.streams.dao;
 
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.demo.retail.store.domain.*;
 import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;

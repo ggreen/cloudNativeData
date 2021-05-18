@@ -2,7 +2,7 @@ package com.vmware.data.demo.retail.store.api.customer;
 
 import com.vmware.data.demo.retail.store.api.JdbcUtil;
 import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.demo.retail.store.domain.*;
 import nyla.solutions.core.util.Text;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -72,7 +72,7 @@ public class CustomerDao
 
         return new HashSet<CustomerFavorites>(list);
     }//------------------------------------------------
-    public int selectCustomerId(io.pivotal.gemfire.domain.CustomerIdentifier customerIdentier)
+    public int selectCustomerId(CustomerIdentifier customerIdentier)
 	throws EmptyResultDataAccessException
 
     {
@@ -85,7 +85,7 @@ public class CustomerDao
         int customerId = jdbcTemplate.queryForObject(sql, args, Integer.class);
         return customerId;
     }
-    public int registerCustomerByIdentifer(io.pivotal.gemfire.domain.CustomerIdentifier customerIdentifier)
+    public int registerCustomerByIdentifer(CustomerIdentifier customerIdentifier)
     {
 
 

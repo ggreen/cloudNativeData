@@ -2,8 +2,8 @@ package com.vmware.data.demo.retail.store.api.order;
 
 import java.util.List;
 
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import nyla.solutions.core.io.csv.CsvReader;
 import nyla.solutions.core.util.Debugger;
 import nyla.solutions.core.util.Text;

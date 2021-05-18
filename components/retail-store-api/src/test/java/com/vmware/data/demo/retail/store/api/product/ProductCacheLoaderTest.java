@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.api.product;
 
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.demo.retail.store.domain.Product;
 import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
 import org.apache.geode.cache.Region;
 import org.junit.jupiter.api.BeforeEach;

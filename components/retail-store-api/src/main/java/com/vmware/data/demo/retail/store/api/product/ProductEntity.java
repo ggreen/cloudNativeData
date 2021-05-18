@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.api.product;
 
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.demo.retail.store.domain.Product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

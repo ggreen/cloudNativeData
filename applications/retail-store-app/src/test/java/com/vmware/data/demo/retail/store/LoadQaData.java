@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
 import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import org.apache.geode.cache.Region;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.ProductQuantity;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.ProductQuantity;
 import nyla.solutions.core.util.Organizer;
 
 public class LoadQaData
@@ -41,8 +39,7 @@ public class LoadQaData
 			
 			productRegion.put(product.getProductId(), product);
 			
-			pa = new ProductAssociate(product.getProductName(), 
-			associateProductNames);
+			pa = new ProductAssociate(associateProductNames, product.getProductName());
 			
 			Set<ProductAssociate> set = Organizer.toSet(pa);
 			

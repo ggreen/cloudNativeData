@@ -1,9 +1,9 @@
 package com.vmware.data.demo.retail.store;
 
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.Promotion;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 import io.pivotal.services.dataTx.geode.RegionTemplate;
 import io.pivotal.services.dataTx.geode.client.GeodeClient;
 import io.pivotal.services.dataTx.geode.lucene.GeodeLuceneSearch;

@@ -1,9 +1,9 @@
 package com.vmware.data.demo.retail.store.api.order;
 
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.gemfire.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
 import com.vmware.data.demo.retail.store.api.customer.CustomerDao;
 import nyla.solutions.core.io.IO;
 import org.apache.geode.cache.Region;

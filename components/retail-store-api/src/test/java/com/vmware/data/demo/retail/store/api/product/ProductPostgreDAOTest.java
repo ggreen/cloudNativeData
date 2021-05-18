@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.api.product;
 
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.demo.retail.store.domain.Product;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

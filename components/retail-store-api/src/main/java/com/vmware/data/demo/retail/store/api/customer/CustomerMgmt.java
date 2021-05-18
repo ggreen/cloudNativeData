@@ -6,13 +6,13 @@ import java.util.Set;
 
 import com.vmware.data.demo.retail.store.api.product.ProductCacheLoader;
 import org.apache.geode.cache.Region;
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.BeaconRequest;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.Promotion;
+import com.vmware.data.demo.retail.store.domain.Beacon;
+import com.vmware.data.demo.retail.store.domain.BeaconRequest;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 import com.vmware.data.demo.retail.store.api.order.OrderJdbcDAO;
 
 public class CustomerMgmt
@@ -74,7 +74,7 @@ public class CustomerMgmt
 			if(products == null || products.isEmpty())
 				return;
 			
-			beaconProductsRegion.put(beacon.getKey(), products);
+			beaconProductsRegion.put(beacon.getUuid(), products);
 			
 			Set<Promotion> promotions = new HashSet<>();
 			for (Product product : products)
@@ -97,7 +97,7 @@ public class CustomerMgmt
 			
 			//add promotions
 			customerPromotionsRegion.put(br.getCustomerId().getKey(),promotions);
-			this.beaconPromotionsRegion.put(beacon.getKey(),promotions);
+			this.beaconPromotionsRegion.put(beacon.getUuid(),promotions);
 		}
 		catch (Exception e)
 		{

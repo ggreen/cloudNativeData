@@ -1,7 +1,7 @@
 package com.vmware.data.demo.retail.store.orders.stream.pipeline;
 
 import com.vmware.data.demo.retail.store.api.order.OrderMgmt;
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.Message;

@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.customer;
 
-import io.pivotal.gemfire.domain.Promotion;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 import org.apache.geode.cache.Region;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

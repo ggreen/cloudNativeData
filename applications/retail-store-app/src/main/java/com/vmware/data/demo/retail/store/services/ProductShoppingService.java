@@ -1,8 +1,8 @@
 package com.vmware.data.demo.retail.store.services;
 
+import com.vmware.data.demo.retail.store.domain.*;
 import com.vmware.dataTx.geode.spring.security.SpringSecurityUserService;
 import com.vmware.dataTx.geode.spring.security.data.UserProfileDetails;
-import io.pivotal.gemfire.domain.*;
 import io.pivotal.services.dataTx.geode.RegionTemplate;
 import io.pivotal.services.dataTx.geode.lucene.GeodeLuceneSearch;
 import nyla.solutions.core.data.collections.QueueSupplier;
@@ -93,7 +93,8 @@ public class ProductShoppingService
 			UserProfileDetails user =springSecurityUserService
 										.findUserProfileDetailsByUserName(userPrincipal.getName());
 
-			CustomerIdentifier customerIdentifier = new CustomerIdentifier(userPrincipal.getName(),
+			CustomerIdentifier customerIdentifier = new CustomerIdentifier(
+					userPrincipal.getName(),
 			user.getFirstName(), user.getLastName(),user.getEmail(), user.getPhone());
 			
 			OrderDTO order = new OrderDTO(customerIdentifier, productIds);

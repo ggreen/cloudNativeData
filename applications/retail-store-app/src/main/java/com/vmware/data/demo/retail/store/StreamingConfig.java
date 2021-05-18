@@ -1,13 +1,11 @@
 package com.vmware.data.demo.retail.store;
 
-import io.pivotal.gemfire.domain.BeaconRequest;
-import io.pivotal.gemfire.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.BeaconRequest;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import nyla.solutions.core.data.collections.QueueSupplier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Queue;
 
 @Configuration
 public class StreamingConfig

@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
-import io.pivotal.gemfire.domain.*;
+import com.vmware.data.demo.retail.store.domain.*;
 import com.vmware.data.demo.retail.store.analytics.streams.dao.RetailAnalyticsDAO;
 import nyla.solutions.core.io.csv.CsvReader;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
@@ -11,7 +11,6 @@ import nyla.solutions.core.util.Text;
 import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -78,7 +77,7 @@ public class RetailStreamAnalyticsService
             if (products == null || products.isEmpty())
                 return;
 
-            beaconProductsRegion.put(beacon.getKey(), products);
+            beaconProductsRegion.put(beacon.getUuid(), products);
 
             Set<Promotion> promotions = new HashSet<>();
             for (Product product : products) {
@@ -100,7 +99,7 @@ public class RetailStreamAnalyticsService
 
             //add promotions
             customerPromotionsRegion.put(br.getCustomerId().getKey(), promotions);
-            this.beaconPromotionsRegion.put(beacon.getKey(), promotions);
+            this.beaconPromotionsRegion.put(beacon.getUuid(), promotions);
         }
         catch (Exception e) {
             e.printStackTrace();

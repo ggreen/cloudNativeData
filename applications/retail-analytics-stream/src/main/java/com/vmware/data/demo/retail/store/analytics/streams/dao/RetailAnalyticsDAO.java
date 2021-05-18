@@ -13,15 +13,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import io.pivotal.gemfire.domain.Beacon;
-import io.pivotal.gemfire.domain.Customer;
-import io.pivotal.gemfire.domain.CustomerFavorites;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.gemfire.domain.Product;
-import io.pivotal.gemfire.domain.ProductAssociate;
-import io.pivotal.gemfire.domain.ProductQuantity;
-import io.pivotal.gemfire.domain.Promotion;
+import com.vmware.data.demo.retail.store.domain.Beacon;
+import com.vmware.data.demo.retail.store.domain.Customer;
+import com.vmware.data.demo.retail.store.domain.CustomerFavorites;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.Product;
+import com.vmware.data.demo.retail.store.domain.ProductAssociate;
+import com.vmware.data.demo.retail.store.domain.ProductQuantity;
+import com.vmware.data.demo.retail.store.domain.Promotion;
 import nyla.solutions.core.util.Text;
 
 public class RetailAnalyticsDAO
@@ -262,7 +262,7 @@ public class RetailAnalyticsDAO
 		RowMapper<ProductAssociate> mapper = (rs,i) -> {
 			String associations = rs.getString(1);
 			String[] postsArray= associations != null? associations.split("|") : null;
-			ProductAssociate pa = new ProductAssociate(product.getProductName(), postsArray);
+			ProductAssociate pa = new ProductAssociate(postsArray,product.getProductName());
 			return pa;
 			};
 		

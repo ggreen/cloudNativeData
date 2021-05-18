@@ -1,9 +1,9 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
 import com.google.gson.Gson;
-import io.pivotal.gemfire.domain.CustomerIdentifier;
-import io.pivotal.gemfire.domain.OrderDTO;
-import io.pivotal.gemfire.domain.Product;
+import com.vmware.data.demo.retail.store.domain.CustomerIdentifier;
+import com.vmware.data.demo.retail.store.domain.OrderDTO;
+import com.vmware.data.demo.retail.store.domain.Product;
 import com.vmware.data.demo.retail.store.analytics.streams.dao.RetailAnalyticsDAO;
 import nyla.solutions.core.io.csv.CsvWriter;
 import nyla.solutions.core.patterns.workthread.ExecutorBoss;
