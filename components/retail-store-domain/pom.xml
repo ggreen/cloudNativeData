@@ -2,15 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.pivotal</groupId>
-	<artifactId>pivot-market-domain</artifactId>
+	<groupId>com.vmware</groupId>
+	<artifactId>retail-store-domain</artifactId>
 	<version>0.0.5-SNAPSHOT</version>
-
 	<properties>
-		<gemfire_version>9.3.0</gemfire_version>
 		<java.version>11</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -37,25 +34,6 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.projectlombok</groupId>-->
-<!--				<artifactId>lombok-maven-plugin</artifactId>-->
-<!--				<version>1.16.8.0</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<id>delombok</id>-->
-<!--						<phase>generate-sources</phase>-->
-<!--						<goals>-->
-<!--							<goal>delombok</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<encoding>UTF-8</encoding>-->
-<!--							<addOutputDirectory>false</addOutputDirectory>-->
-<!--							<sourceDirectory>src/main/java</sourceDirectory>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
 		</plugins>
 	</build>
 

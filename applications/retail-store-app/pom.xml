@@ -36,8 +36,8 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.pivotal</groupId>
-            <artifactId>pivot-market-domain</artifactId>
+            <groupId>com.vmware</groupId>
+            <artifactId>retail-store-domain</artifactId>
             <version>0.0.5-SNAPSHOT</version>
         </dependency>
         <dependency>
