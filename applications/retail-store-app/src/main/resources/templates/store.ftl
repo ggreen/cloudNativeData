@@ -25,10 +25,10 @@
 <body class="application">
 
 	<div id="mainPanel" class="col-sm-9">
-      	<br/>
-      	<br/>
-        <h1>Pivot Mart</h1>
-        <br/>
+        <p class="banner">
+             <a href="/"><img src="img/logo.png"/></a> <span class="header"> Retail Store</span>
+        </p>
+            <br/>
         <div>
         	<strong>Hello ${userName}</strong>
         </div>

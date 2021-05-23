@@ -1,6 +1,6 @@
 package com.vmware.data.demo.retail.store.analytics.streams.consumers;
 
-import com.vmware.data.demo.retail.store.analytics.streams.RetailStreamAnalyticsService;
+import com.vmware.data.demo.retail.store.analytics.streams.controller.RetailStreamAnalyticController;
 import com.vmware.data.demo.retail.store.domain.BeaconRequest;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
 class BeaconRequestConsumerTest
 {
     @Mock
-    private RetailStreamAnalyticsService service;
+    private RetailStreamAnalyticController service;
     @Test
     void accept()
     {

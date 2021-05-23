@@ -29,7 +29,7 @@ import java.util.Set;
 
 
 @Configuration
-@EnableJpaRepositories(basePackages = "io.pivotal.market.api")
+@EnableJpaRepositories
 @EnableTransactionManagement
 public class OrderConfig
 {

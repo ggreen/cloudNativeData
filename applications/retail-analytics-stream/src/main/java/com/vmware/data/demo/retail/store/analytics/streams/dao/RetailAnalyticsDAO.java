@@ -9,6 +9,7 @@ import java.util.Set;
 
 import com.vmware.data.demo.retail.store.api.product.ProductJdbcDao;
 import io.pivotal.services.dataTx.geode.io.QuerierService;
+import nyla.solutions.core.util.Debugger;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -64,7 +65,7 @@ public class RetailAnalyticsDAO
 		"AND _rank_ = 1";
 
 		
-		System.out.println("selectCustomerFavorites sql:"+sql);
+		Debugger.println(this,"customerId:"+customerId+" SQL:"+sql);
 		
 		RowMapper<CustomerFavorites> rm = (rs,rowNum) -> 
 		{ 
@@ -91,14 +92,15 @@ public class RetailAnalyticsDAO
 		
 		return new HashSet<CustomerFavorites>(list);
 	}//------------------------------------------------
-	private int selectCustomerId(CustomerIdentifier customerIdentier)
+	private int selectCustomerId(CustomerIdentifier customerIdentifier)
 	throws EmptyResultDataAccessException
 	{
-		String firstName = Text.initCaps(customerIdentier.getFirstName());
-		String lastName = Text.initCaps(customerIdentier.getLastName());
+		Debugger.println(RetailAnalyticsDAO.class,"customerIdentifier:"+customerIdentifier);
+
+		String firstName = Text.initCaps(customerIdentifier.getFirstName());
+		String lastName = Text.initCaps(customerIdentifier.getLastName());
 		
 		String sql = "select customerid from pivotalmarkets.customers c where (c.firstname = ? and c.lastname = ?) limit 1 ";
-		// Object[] args, Class<T> requiredTypex
 		int customerId = this.jdbcTemplate.queryForObject(sql,Integer.class,firstName,lastName);
 		return customerId;
 	}//------------------------------------------------

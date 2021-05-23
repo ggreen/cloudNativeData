@@ -29,7 +29,7 @@ public class GeodeConfig
     }//------------------------------------------------
 
     @Bean("beaconPromotionsRegion")
-    public Region<String, Set<CustomerFavorites>> beaconPromotionsRegion()
+    public Region<String,  Set<Promotion>> beaconPromotionsRegion()
     {
         return GeodeClient.connect().getRegion("beaconPromotions");
     }//------------------------------------------------
@@ -38,7 +38,6 @@ public class GeodeConfig
     {
         return GeodeClient.connect().getRegion("customerLocation");
     }
-
 
     //productsRegion
     @Bean("productsRegion")

@@ -17,11 +17,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.4.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.pivotal.services.dataTx</groupId>
             <artifactId>dataTx-geode-extensions-core</artifactId>
@@ -51,7 +55,7 @@
         <dependency>
             <groupId>com.github.nyla-solutions</groupId>
             <artifactId>nyla.solutions.core</artifactId>
-            <version>1.4.2-SNAPSHOT</version>
+            <version>1.4.3</version>
         </dependency>
         <dependency>
             <groupId>com.vmware</groupId>
@@ -87,13 +91,6 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.pivotal.gemfire</groupId>-->
-<!--            <artifactId>gemfire-greenplum</artifactId>-->
-<!--            <version>2.3.0</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${basedir}/lib/gemfire-greenplum-2.3.0.jar</systemPath>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
@@ -129,7 +126,30 @@
             <artifactId>geode-lucene</artifactId>
             <version>1.13.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.vmware</groupId>
+            <artifactId>retail-store-api</artifactId>
+            <version>0.1.3-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
@@ -141,12 +161,6 @@
             <scope>test</scope>
             <classifier>test-binder</classifier>
             <type>test-jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-store-api</artifactId>
-            <version>0.1.3-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>

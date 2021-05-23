@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Cloud Native Data - Store</title>
+  <title>Retail Store - Cloud Native Data - Demo</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link>
   <link rel="stylesheet" type="text/css" href="keen-dashboards.css"></link>
@@ -82,8 +82,10 @@
   </script>
 </head>
 <body>
- <div class="pivotalBannerImg"><a href="/"><img  src="img/pivotal.png"/></a></div>
- <h1>Pivot Mart</h1>
+
+	<p class="banner">
+		 <a href="/"><img src="img/logo.png"/></a> <span class="header"> User Registration</span>
+	</p>
 
   <div>
         	<strong>Loyalty program registration</strong>

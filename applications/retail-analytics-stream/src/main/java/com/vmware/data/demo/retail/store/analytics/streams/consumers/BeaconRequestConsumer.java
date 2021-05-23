@@ -1,15 +1,15 @@
 package com.vmware.data.demo.retail.store.analytics.streams.consumers;
 
-import com.vmware.data.demo.retail.store.analytics.streams.RetailStreamAnalyticsService;
+import com.vmware.data.demo.retail.store.analytics.streams.controller.RetailStreamAnalyticController;
 import com.vmware.data.demo.retail.store.domain.BeaconRequest;
 
 import java.util.function.Consumer;
 
 public class BeaconRequestConsumer implements Consumer<BeaconRequest>
 {
-    private final RetailStreamAnalyticsService service;
+    private final RetailStreamAnalyticController service;
 
-    public BeaconRequestConsumer(RetailStreamAnalyticsService service)
+    public BeaconRequestConsumer(RetailStreamAnalyticController service)
     {
         this.service = service;
     }

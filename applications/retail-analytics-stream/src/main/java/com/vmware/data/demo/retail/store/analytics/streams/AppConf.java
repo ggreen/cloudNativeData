@@ -1,5 +1,6 @@
 package com.vmware.data.demo.retail.store.analytics.streams;
 
+import com.vmware.data.demo.retail.store.analytics.streams.controller.RetailStreamAnalyticController;
 import com.vmware.data.demo.retail.store.domain.BeaconRequest;
 import com.vmware.data.demo.retail.store.domain.OrderDTO;
 import com.vmware.data.demo.retail.store.analytics.streams.consumers.BeaconRequestConsumer;
@@ -89,12 +90,12 @@ public class AppConf
 
 
     @Bean
-    public Consumer<OrderDTO> orders(RetailStreamAnalyticsService streamService) {
+    public Consumer<OrderDTO> orders(RetailStreamAnalyticController streamService) {
         return new OrderConsumer(streamService);
     }
 
     @Bean
-    public Consumer<BeaconRequest> beaconRequests(RetailStreamAnalyticsService streamService)
+    public Consumer<BeaconRequest> beaconRequests(RetailStreamAnalyticController streamService)
     {
         return new BeaconRequestConsumer(streamService);
     }

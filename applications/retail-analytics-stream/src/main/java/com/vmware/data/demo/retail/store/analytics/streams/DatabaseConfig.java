@@ -24,6 +24,11 @@ import javax.sql.DataSource;
 public class DatabaseConfig
 {
     @Bean
+    public ProductJdbcDao productJdbcDao(JdbcTemplate jdbcTemplate)
+    {
+        return new ProductJdbcDao(jdbcTemplate);
+    }
+    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     AssociationProbabilities analyzer(RetailAnalyticsDAO dao)
     {

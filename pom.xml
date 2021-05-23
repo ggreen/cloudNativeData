@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>io.pivotal</groupId>
-  <artifactId>pivot-market-parent</artifactId>
+  <groupId>com.vmware</groupId>
+  <artifactId>retail-store-cloud-native-data-parent</artifactId>
   <version>0.1.1</version>
   <packaging>pom</packaging>
 
@@ -10,7 +10,7 @@
     <module>components/retail-store-api</module>
     <module>applications/retail-store-app</module>
     <module>applications/retail-analytics-stream</module>
-      <module>applications/marketDataMigration</module>
+      <module>applications/retail-analytics-data-migration</module>
     <module>applications/retail-processor-orders-stream</module>
   </modules>
   <repositories>
