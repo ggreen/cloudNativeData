@@ -35,18 +35,18 @@ The first Minimum Viable Product (MVP) version is a small supermarket. There are
 
 [http://pivotmarketapp.apps.pcfone.io](http://pivotmarketapp.apps.pcfone.io)
 
-![Cloud Native Data Demo](https://github.com/ggreen/retail-store-cloud-native-data/blob/main/docs/cnatd.jpg?raw=true)
+![Cloud Native Data Demo](https://raw.githubusercontent.com/ggreen/retail-store-cloud-native-data/main/docs/cnatd.jpg?raw=true)
 
-The application is deployed on Pivotal Cloud Foundry (PCF).
+The application is deployed on VMware Tanzu.
 Users can open a window to simulate walking through a store.
 
 Clicking on a particular map area will trigger the sending of location information messages
-to an Apache Kafka topic. This starts a spring cloud stream asynchronous data flow running in PCF.
+to an RabbitMQ queue. This starts a spring cloud stream asynchronous data flow.
 The data flow will recalculate updates to the customer's favorite
 products based on analytical buying history. The data flow will also  search for promotions of products in the beacon area.
 
-Discovered promotions are cached into Pivotal Cloud Cache (PCC) running in PCF.
-PCC notifies the application asynchronously of the discovered promotions.
+Discovered promotions are cached into GemFire.
+GemFire notifies the application asynchronously of the discovered promotions.
 The application's user interface will display these promotions in near realtime.
 
 ## Known Issues
@@ -54,21 +54,3 @@ The application's user interface will display these promotions in near realtime.
 **NOTE:** The current implementation is for a single customer.
 The notifications are currently shared across multiple open browsers.
 The distribute is shared for a single customer, that ALL open browser instances will receive all messages.
-
-
-
-docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/madlib-1.17.0+18-gp6-rhel6-x86_64/madlib-1.17.0+18-gp6-rhel6-x86_64.gppkg 484d641ca16a:/home/gpadmin
-docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/GPDB_4.3/madlib-ossv1.7.1_pv1.9.3_gpdb4.3orca-rhel5-x86_64.gppkg  484d641ca16a:/home/gpadmin
-
-docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/yum-3.4.3.tar.gz 484d641ca16a:/home/gpadmin 
-
-gppkg  -i madlib-ossv1.7.1_pv1.9.3_gpdb4.3orca-rhel5-x86_64.gppkg
-
-/usr/local/greenplum-db/madlib/bin/
-
-export PGDATABASE=template1
-
-
-/usr/local/greenplum-db/madlib/bin/madpack --platform greenplum install
-
-docker cp /Users/devtools/repositories/RDMS/Greenplum/Madlib/m4 484d641ca16a:/home/gpadmin
