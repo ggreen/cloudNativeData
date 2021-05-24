@@ -99,7 +99,7 @@ public class RetailStreamAnalyticController
 
             //add promotions
             customerPromotionsRegion.put(br.getCustomerId().getKey(), promotions);
-            this.beaconPromotionsRegion.put(beacon.getUuid(), promotions);
+            this.beaconPromotionsRegion.put(beacon.getKey(), promotions);
         }
         catch (Exception e) {
             e.printStackTrace();

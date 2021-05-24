@@ -124,3 +124,9 @@ create table pivotalmarkets.stores  (
   longitude double precision,
   latitude double precision
 );
+
+
+CREATE SEQUENCE order_seq START 10000;
+CREATE SEQUENCE item_seq START 10000;
+
+ALTER ROLE postgres SET search_path TO pivotalmarkets;

@@ -35,24 +35,6 @@ public class RetailStoreAlertController
     }
 
 
-    /**
-     * Example Data
-     * <p>
-     * data: {"tweet": "RT @maggieNYT: The whole \"nationalist vs New York wing\" fight was smart branding for ppl
-     * trying to rally troops.. Not accurate, but clever\u2026", "polarity": "0.87"}
-     * data: {"tweet": "RT @edko426: @4AllSoulKind @03Ava @cgm807 @zackwack123 @Barbarajean117 @WalkerkillR @nfraizi
-     * @GTBighair1 @dynamex @MiceeMouse\u2026 ", "polarity": "0.98"}
-     * data: {"tweet": "RT @ChelseaFC: Superb header by Gary Cahill to put us back in front, tremendous bravery by the
-     * skipper and wonderful execution. #CHESOU", "polarity": "0.87"}
-     * data: {"tweet": "RT @BNightengale: The #Marlins sale of course won't be finalized until #MLB approval. The next
-     * owners meeting is next month in New York", "polarity": "0.56"}
-     * data: {"tweet": "#3RMXi v0.1.2 had just been released!\nThe Language component State is decoupled from the UI
-     * now!\nhttps://t.co/y3D4tIurAf\n#react #javascript", "polarity": "0.67"}
-     *
-     * @param user     the login user
-     * @param response the HTTP response objecdt
-     * @throws IOException when IO error occurs
-     */
     @CrossOrigin
     @RequestMapping(value = "/live_alerts")
     @ResponseBody

@@ -82,17 +82,17 @@ public class OrderJdbcDAO
 		}
 		
 		//Get orderId
-		int orderId = nextSeqVal("order_seq");
+		int orderId = nextSeqVal("pivotalmarkets.order_seq");
 		int storeId = 4;
 		
 		this.jdbcTemplate.update(insertOrderSQL,orderId,customerId,storeId,Calendar.getInstance().getTime());
 		
-		String insertItemSql="INSERT INTO order_items(itemid, "+ 
+		String insertItemSql="INSERT INTO pivotalmarkets.order_items(itemid, "+
 										"orderid,  " + 	
 										"productid, " + 
 										"quantity, " + 
 										"productname)" + 
-		" values(nextval('item_seq'),?,?,?,?)";
+		" values(nextval('pivotalmarkets.item_seq'),?,?,?,?)";
 		
 		ArrayList<Product> products = new ArrayList<>(productIds.length );
 		Product product;

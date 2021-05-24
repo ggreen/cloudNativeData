@@ -16,4 +16,10 @@ public class Beacon {
 	private boolean entrance;
 	private boolean checkout;
 
+    public String getKey()
+    {
+    	return new StringBuilder().append(uuid).append("|")
+				.append(major).append("|")
+				.append(minor).toString();
+    }
 }

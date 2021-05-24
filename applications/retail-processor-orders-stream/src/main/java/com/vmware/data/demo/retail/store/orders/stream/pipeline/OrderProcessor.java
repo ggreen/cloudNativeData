@@ -6,10 +6,12 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.function.Function;
 
+@Component
 public class OrderProcessor implements Function<String,Collection<OrderDTO>>
 {
 
@@ -42,14 +44,9 @@ public class OrderProcessor implements Function<String,Collection<OrderDTO>>
         }
     }
 
-    /**
-     *
-     * @param msg the CSV input msg
-     * @return the order details
-     */
-    @StreamListener(Processor.INPUT)
-    @SendTo(Processor.OUTPUT)
-    public Collection<OrderDTO> processMessage(Message<String> msg) {
-        return this.apply(msg.getPayload());
-    }//------------------------------------------------
+//    @StreamListener(Processor.INPUT)
+//    @SendTo(Processor.OUTPUT)
+//    public Collection<OrderDTO> processMessage(Message<String> msg) {
+//        return this.apply(msg.getPayload());
+//    }//------------------------------------------------
 }

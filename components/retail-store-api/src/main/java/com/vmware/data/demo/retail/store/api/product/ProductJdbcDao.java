@@ -126,13 +126,13 @@ public class ProductJdbcDao
 
     public Set<ProductAssociate> selectProductAssociates(Product product)
     {
-        String sql = "select pre[1],post from pivotalmarkets.assoc_rules where lower(pre[1]) like lower('%" +
+        String sql = "select id,associations from pivotalmarkets.product_association where lower(id) like lower('%" +
                 product.getProductName().trim() + "%')";
 
         RowMapper<ProductAssociate> mapper = (rs, i) -> {
-            Array posts = rs.getArray(2);
-            String[] postsArray = (String[]) posts.getArray();
-            ProductAssociate pa = new ProductAssociate(postsArray,rs.getString(1));
+            //TODO: migrated from Apache Madlib (need to research arrays)
+            String[] associations = {rs.getString(2)};
+            ProductAssociate pa = new ProductAssociate(associations,rs.getString(1));
             return pa;
         };
 
